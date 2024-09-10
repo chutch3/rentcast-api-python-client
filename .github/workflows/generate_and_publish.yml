@@ -37,21 +37,7 @@ jobs:
 
       - name: Download and compare OpenAPI spec
         id: compare_spec
-        run: |
-          bash scripts/download_openapi_spec.sh
-          if [ -f "openapi_spec.json.old" ]; then
-            if cmp -s "openapi_spec.json" "openapi_spec.json.old"; then
-              echo "No changes detected in the OpenAPI spec."
-              echo "::set-output name=changed::false"
-            else
-              echo "Changes detected in the OpenAPI spec."
-              echo "::set-output name=changed::true"
-            fi
-          else
-            echo "No previous OpenAPI spec found. Treating as a change."
-            echo "::set-output name=changed::true"
-          fi
-          mv openapi_spec.json openapi_spec.json.old
+        run: bash scripts/download_openapi_spec.sh
 
       - name: Generate package
         if: steps.compare_spec.outputs.changed == 'true'
