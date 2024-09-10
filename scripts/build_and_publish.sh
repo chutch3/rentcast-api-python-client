@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PACKAGE_DIR="rentcast_api"
+PACKAGE_DIR="rentcast_client"
 
 echo "Building and publishing package"
 cd "$PACKAGE_DIR"

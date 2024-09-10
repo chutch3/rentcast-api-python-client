@@ -2,8 +2,8 @@
 set -e
 
 INPUT_SPEC="openapi_spec.json"
-OUTPUT_DIR="rentcast_client"
 PACKAGE_NAME="rentcast_client"
+OUTPUT_DIR="$PACKAGE_NAME"
 
 echo "Generating Python package from OpenAPI spec"
 openapi-generator-cli generate \
