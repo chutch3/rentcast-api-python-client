@@ -1,8 +1,9 @@
 name: Generate and Publish Rentcast API Package
 
 on:
-  schedule:
-    - cron: "0 0 * * *" # Run daily at midnight UTC
+  push:
+    branches:
+      - main
   workflow_dispatch: # Allow manual triggering
 
 jobs:
@@ -35,16 +36,14 @@ jobs:
           pip install twine wheel setuptools
           npm install @openapitools/openapi-generator-cli -g
 
-      - name: Download and compare OpenAPI spec
-        id: compare_spec
+      - name: Download OpenAPI spec
+        id: download_spec
         run: bash scripts/download_openapi_spec.sh
 
       - name: Generate package
-        if: steps.compare_spec.outputs.changed == 'true'
         run: bash scripts/generate_package.sh
 
       - name: Build and publish package
-        if: steps.compare_spec.outputs.changed == 'true'
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
