@@ -10,6 +10,8 @@ openapi-generator-cli generate \
     -i "$INPUT_SPEC" \
     -g python \
     -o "$OUTPUT_DIR" \
-    --package-name "$PACKAGE_NAME"
+    --package-name "$PACKAGE_NAME" \
+    --library asyncio
+
 
 echo "Package generated in $OUTPUT_DIR"
