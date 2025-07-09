@@ -1,0 +1,21 @@
+[project]
+name = "rentcast-api-python-client"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+license = {text = "n"}
+readme = "README.md"
+requires-python = ">=3.9,<4"
+dependencies = [
+    "openapi-generator-cli[jdk4py] (>=7.14.0,<8.0.0)",
+    "twine (>=6.1.0,<7.0.0)",
+    "wheel (>=0.45.1,<0.46.0)",
+    "setuptools (>=80.9.0,<81.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
