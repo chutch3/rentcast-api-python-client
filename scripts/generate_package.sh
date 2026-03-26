@@ -3,7 +3,7 @@ set -e
 
 INPUT_SPEC="openapi_spec.json"
 PACKAGE_NAME="rentcast_client"
-PACKAGE_VERSION="1.0.4"
+PACKAGE_VERSION=$(poetry version --short)
 OUTPUT_DIR="$PACKAGE_NAME"
 
 echo "Generating Python package from OpenAPI spec"

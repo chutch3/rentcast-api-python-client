@@ -15,6 +15,19 @@ pydantic = ">=2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = {version = ">=7.14.0,<8.0.0", extras = ["jdk4py"]}
+python-semantic-release = "^9.8.0"
+
+[tool.semantic_release]
+version_variable = [
+    "rentcast_client/rentcast_client/__init__.py:__version__"
+]
+version_toml = [
+    "pyproject.toml:tool.poetry.version"
+]
+branch = "main"
+upload_to_pypi = false
+upload_to_release = true
+build_command = "poetry build"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
