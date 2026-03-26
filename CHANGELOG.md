@@ -2,11 +2,26 @@
 
 
 
-## v1.0.0 (2026-03-26)
+## v2.0.0 (2026-03-26)
 
 ### Breaking
 
 * feat!: fix package build, add CI/CD pipeline, and update client to latest Rentcast API spec ([`60ff581`](https://github.com/chutch3/rentcast-api-python-client/commit/60ff5817dfc5635138c5a7e08c57dfef6ff308f7))
+
+### Chore
+
+* chore(release): v1.0.0 [skip ci] ([`35a4ffd`](https://github.com/chutch3/rentcast-api-python-client/commit/35a4ffdecfb2f98bb8f2ea2a7e2b8237ed8d6cf4))
+
+### Feature
+
+* feat: update client to latest Rentcast API spec ([`a5117bb`](https://github.com/chutch3/rentcast-api-python-client/commit/a5117bb3a4e4d2d1b33752a62cbe018fa020a77f))
+
+### Fix
+
+* fix: remove build_command from semantic-release config, poetry not available in action container ([`3b756ad`](https://github.com/chutch3/rentcast-api-python-client/commit/3b756ad1428e042d36af01fc2da9c772c1c89d74))
+
+
+## v1.0.4 (2024-09-09)
 
 ### Ci
 
@@ -31,8 +46,6 @@
 * feat: initial commit ([`a7e2c37`](https://github.com/chutch3/rentcast-api-python-client/commit/a7e2c3752a9b178dcd1ce86b24b03b47ab0024c0))
 
 ### Fix
-
-* fix: remove build_command from semantic-release config, poetry not available in action container ([`3b756ad`](https://github.com/chutch3/rentcast-api-python-client/commit/3b756ad1428e042d36af01fc2da9c772c1c89d74))
 
 * fix: library configuration and bumped version ([`205e5d4`](https://github.com/chutch3/rentcast-api-python-client/commit/205e5d498092fcbb214934af265da83a658b2291))
 
