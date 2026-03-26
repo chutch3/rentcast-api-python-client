@@ -18,7 +18,7 @@ openapi-generator-cli = {version = ">=7.14.0,<8.0.0", extras = ["jdk4py"]}
 python-semantic-release = "^9.8.0"
 
 [tool.semantic_release]
-version_variable = [
+version_variables = [
     "rentcast_client/rentcast_client/__init__.py:__version__"
 ]
 version_toml = [
