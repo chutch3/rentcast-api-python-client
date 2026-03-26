@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-OPENAPI_URL="https://developers.rentcast.io/openapi/62980a560589b4001356b8a1"
+OPENAPI_URL="https://developers.rentcast.io/openapi/rentcast-api.json"
 OUTPUT_FILE="openapi_spec.json"
 
 echo "Downloading OpenAPI spec from $OPENAPI_URL"

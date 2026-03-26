@@ -1,3 +1,6 @@
 *.json
 *.old
-rentcast_client
+.env
+.env.*
+.python-version
+dist/

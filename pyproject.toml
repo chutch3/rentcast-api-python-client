@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "rentcast-client"
+version = "1.0.4"
+description = "Python client for the Rentcast API"
+authors = ["Cody Hutchens <chutchens91@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "rentcast_client", from = "rentcast_client"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4"
+urllib3 = ">=1.25.3"
+python-dateutil = ">=2.8.2"
+pydantic = ">=2.0.0"
+
+[tool.poetry.group.dev.dependencies]
+openapi-generator-cli = {version = ">=7.14.0,<8.0.0", extras = ["jdk4py"]}
+python-semantic-release = "^9.8.0"
+
+[tool.semantic_release]
+version_variables = [
+    "rentcast_client/rentcast_client/__init__.py:__version__"
+]
+version_toml = [
+    "pyproject.toml:tool.poetry.version"
+]
+branch = "main"
+commit_message = "chore(release): v{version} [skip ci]"
+tag_format = "v{version}"
+upload_to_pypi = false
+upload_to_release = true
+build_command = "poetry build"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
