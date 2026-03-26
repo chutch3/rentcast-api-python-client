@@ -18,10 +18,12 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastRentEstimateLongTerm200ResponseComparablesInner(BaseModel):
     """
@@ -30,33 +32,37 @@ class RentcastRentEstimateLongTerm200ResponseComparablesInner(BaseModel):
     id: Optional[StrictStr] = None
     formatted_address: Optional[StrictStr] = Field(default=None, alias="formattedAddress")
     address_line1: Optional[StrictStr] = Field(default=None, alias="addressLine1")
-    address_line2: Optional[Any] = Field(default=None, alias="addressLine2")
+    address_line2: Optional[StrictStr] = Field(default=None, alias="addressLine2")
     city: Optional[StrictStr] = None
     state: Optional[StrictStr] = None
+    state_fips: Optional[StrictStr] = Field(default=None, alias="stateFips")
     zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
     county: Optional[StrictStr] = None
-    latitude: Optional[Union[StrictFloat, StrictInt]] = 0
-    longitude: Optional[Union[StrictFloat, StrictInt]] = 0
+    county_fips: Optional[StrictStr] = Field(default=None, alias="countyFips")
+    latitude: Optional[Union[StrictFloat, StrictInt]] = 
+    longitude: Optional[Union[StrictFloat, StrictInt]] = 
     property_type: Optional[StrictStr] = Field(default=None, alias="propertyType")
-    bedrooms: Optional[StrictInt] = 0
-    bathrooms: Optional[StrictInt] = 0
-    square_footage: Optional[StrictInt] = Field(default=0, alias="squareFootage")
-    lot_size: Optional[StrictInt] = Field(default=0, alias="lotSize")
-    year_built: Optional[StrictInt] = Field(default=0, alias="yearBuilt")
-    price: Optional[StrictInt] = 0
+    bedrooms: Optional[Union[StrictFloat, StrictInt]] = 
+    bathrooms: Optional[Union[StrictFloat, StrictInt]] = 
+    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="squareFootage")
+    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="lotSize")
+    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="yearBuilt")
+    status: Optional[StrictStr] = None
+    price: Optional[Union[StrictFloat, StrictInt]] = 
     listing_type: Optional[StrictStr] = Field(default=None, alias="listingType")
-    listed_date: Optional[StrictStr] = Field(default=None, alias="listedDate")
-    removed_date: Optional[StrictStr] = Field(default=None, alias="removedDate")
-    last_seen_date: Optional[StrictStr] = Field(default=None, alias="lastSeenDate")
-    days_on_market: Optional[StrictInt] = Field(default=0, alias="daysOnMarket")
-    distance: Optional[Union[StrictFloat, StrictInt]] = 0
-    days_old: Optional[StrictInt] = Field(default=0, alias="daysOld")
-    correlation: Optional[Union[StrictFloat, StrictInt]] = 0
+    listed_date: Optional[datetime] = Field(default=None, alias="listedDate")
+    removed_date: Optional[datetime] = Field(default=None, alias="removedDate")
+    last_seen_date: Optional[datetime] = Field(default=None, alias="lastSeenDate")
+    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="daysOnMarket")
+    distance: Optional[Union[StrictFloat, StrictInt]] = 
+    days_old: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="daysOld")
+    correlation: Optional[Union[StrictFloat, StrictInt]] = 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "zipCode", "county", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "price", "listingType", "listedDate", "removedDate", "lastSeenDate", "daysOnMarket", "distance", "daysOld", "correlation"]
+    __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "stateFips", "zipCode", "county", "countyFips", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "status", "price", "listingType", "listedDate", "removedDate", "lastSeenDate", "daysOnMarket", "distance", "daysOld", "correlation"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -68,8 +74,7 @@ class RentcastRentEstimateLongTerm200ResponseComparablesInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -101,11 +106,6 @@ class RentcastRentEstimateLongTerm200ResponseComparablesInner(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if address_line2 (nullable) is None
-        # and model_fields_set contains the field
-        if self.address_line2 is None and "address_line2" in self.model_fields_set:
-            _dict['addressLine2'] = None
-
         return _dict
 
     @classmethod
@@ -124,25 +124,28 @@ class RentcastRentEstimateLongTerm200ResponseComparablesInner(BaseModel):
             "addressLine2": obj.get("addressLine2"),
             "city": obj.get("city"),
             "state": obj.get("state"),
+            "stateFips": obj.get("stateFips"),
             "zipCode": obj.get("zipCode"),
             "county": obj.get("county"),
-            "latitude": obj.get("latitude") if obj.get("latitude") is not None else 0,
-            "longitude": obj.get("longitude") if obj.get("longitude") is not None else 0,
+            "countyFips": obj.get("countyFips"),
+            "latitude": obj.get("latitude") if obj.get("latitude") is not None else ,
+            "longitude": obj.get("longitude") if obj.get("longitude") is not None else ,
             "propertyType": obj.get("propertyType"),
-            "bedrooms": obj.get("bedrooms") if obj.get("bedrooms") is not None else 0,
-            "bathrooms": obj.get("bathrooms") if obj.get("bathrooms") is not None else 0,
-            "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else 0,
-            "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else 0,
-            "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else 0,
-            "price": obj.get("price") if obj.get("price") is not None else 0,
+            "bedrooms": obj.get("bedrooms") if obj.get("bedrooms") is not None else ,
+            "bathrooms": obj.get("bathrooms") if obj.get("bathrooms") is not None else ,
+            "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else ,
+            "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else ,
+            "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else ,
+            "status": obj.get("status"),
+            "price": obj.get("price") if obj.get("price") is not None else ,
             "listingType": obj.get("listingType"),
             "listedDate": obj.get("listedDate"),
             "removedDate": obj.get("removedDate"),
             "lastSeenDate": obj.get("lastSeenDate"),
-            "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else 0,
-            "distance": obj.get("distance") if obj.get("distance") is not None else 0,
-            "daysOld": obj.get("daysOld") if obj.get("daysOld") is not None else 0,
-            "correlation": obj.get("correlation") if obj.get("correlation") is not None else 0
+            "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else ,
+            "distance": obj.get("distance") if obj.get("distance") is not None else ,
+            "daysOld": obj.get("daysOld") if obj.get("daysOld") is not None else ,
+            "correlation": obj.get("correlation") if obj.get("correlation") is not None else 
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

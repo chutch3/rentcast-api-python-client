@@ -6,11 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **event** | **str** |  | [optional] 
-**price** | **int** |  | [optional] [default to 0]
+**price** | **float** |  | [optional] [default to ]
 **listing_type** | **str** |  | [optional] 
-**listed_date** | **str** |  | [optional] 
-**removed_date** | **object** |  | [optional] 
-**days_on_market** | **int** |  | [optional] [default to 0]
+**listed_date** | **datetime** |  | [optional] 
+**removed_date** | **datetime** |  | [optional] 
+**days_on_market** | **float** |  | [optional] [default to ]
 
 ## Example
 

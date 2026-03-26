@@ -20,19 +20,22 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from rentcast_client.models.rentcast_sale_listings200_response_inner_history20240624 import RentcastSaleListings200ResponseInnerHistory20240624
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastSaleListings200ResponseInnerHistory(BaseModel):
     """
     RentcastSaleListings200ResponseInnerHistory
     """ # noqa: E501
-    var_2024_06_24: Optional[RentcastRentcastSaleListings200ResponseInnerHistory20240624] = Field(default=None, alias="2024-06-24")
+    var_2024_06_24: Optional[RentcastSaleListings200ResponseInnerHistory20240624] = Field(default=None, alias="2024-06-24")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["2024-06-24"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -44,8 +47,7 @@ class RentcastSaleListings200ResponseInnerHistory(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -92,7 +94,7 @@ class RentcastSaleListings200ResponseInnerHistory(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "2024-06-24": RentcastRentcastSaleListings200ResponseInnerHistory20240624.from_dict(obj["2024-06-24"]) if obj.get("2024-06-24") is not None else None
+            "2024-06-24": RentcastSaleListings200ResponseInnerHistory20240624.from_dict(obj["2024-06-24"]) if obj.get("2024-06-24") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

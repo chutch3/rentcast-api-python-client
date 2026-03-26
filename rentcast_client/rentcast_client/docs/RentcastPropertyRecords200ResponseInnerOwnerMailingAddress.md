@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **address_line2** | **str** |  | [optional] 
 **city** | **str** |  | [optional] 
 **state** | **str** |  | [optional] 
+**state_fips** | **str** |  | [optional] 
 **zip_code** | **str** |  | [optional] 
 
 ## Example

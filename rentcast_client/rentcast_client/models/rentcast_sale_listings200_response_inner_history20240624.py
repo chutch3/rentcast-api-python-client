@@ -18,26 +18,29 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastSaleListings200ResponseInnerHistory20240624(BaseModel):
     """
     RentcastSaleListings200ResponseInnerHistory20240624
     """ # noqa: E501
     event: Optional[StrictStr] = None
-    price: Optional[StrictInt] = 0
+    price: Optional[Union[StrictFloat, StrictInt]] = 
     listing_type: Optional[StrictStr] = Field(default=None, alias="listingType")
-    listed_date: Optional[StrictStr] = Field(default=None, alias="listedDate")
-    removed_date: Optional[Any] = Field(default=None, alias="removedDate")
-    days_on_market: Optional[StrictInt] = Field(default=0, alias="daysOnMarket")
+    listed_date: Optional[datetime] = Field(default=None, alias="listedDate")
+    removed_date: Optional[datetime] = Field(default=None, alias="removedDate")
+    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="daysOnMarket")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["event", "price", "listingType", "listedDate", "removedDate", "daysOnMarket"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -49,8 +52,7 @@ class RentcastSaleListings200ResponseInnerHistory20240624(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -82,11 +84,6 @@ class RentcastSaleListings200ResponseInnerHistory20240624(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if removed_date (nullable) is None
-        # and model_fields_set contains the field
-        if self.removed_date is None and "removed_date" in self.model_fields_set:
-            _dict['removedDate'] = None
-
         return _dict
 
     @classmethod
@@ -100,11 +97,11 @@ class RentcastSaleListings200ResponseInnerHistory20240624(BaseModel):
 
         _obj = cls.model_validate({
             "event": obj.get("event"),
-            "price": obj.get("price") if obj.get("price") is not None else 0,
+            "price": obj.get("price") if obj.get("price") is not None else ,
             "listingType": obj.get("listingType"),
             "listedDate": obj.get("listedDate"),
             "removedDate": obj.get("removedDate"),
-            "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else 0
+            "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else 
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     RentCast API
 
@@ -12,20 +10,22 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
-from rentcast_client.models.rentcast_rentcast_market_statistics200_response import RentcastRentcastMarketStatistics200Response
-from rentcast_client.models.rentcast_rentcast_property_records200_response_inner import RentcastRentcastPropertyRecords200ResponseInner
-from rentcast_client.models.rentcast_rentcast_rent_estimate_long_term200_response import RentcastRentcastRentEstimateLongTerm200Response
-from rentcast_client.models.rentcast_rentcast_rental_listings_long_term200_response_inner import RentcastRentcastRentalListingsLongTerm200ResponseInner
-from rentcast_client.models.rentcast_rentcast_sale_listings200_response_inner import RentcastRentcastSaleListings200ResponseInner
-from rentcast_client.models.rentcast_rentcast_value_estimate200_response import RentcastRentcastValueEstimate200Response
+from rentcast_client.models.rentcast_market_statistics200_response import RentcastMarketStatistics200Response
+from rentcast_client.models.rentcast_property_records200_response_inner import RentcastPropertyRecords200ResponseInner
+from rentcast_client.models.rentcast_rent_estimate_long_term200_response import RentcastRentEstimateLongTerm200Response
+from rentcast_client.models.rentcast_rental_listings_long_term200_response_inner import RentcastRentalListingsLongTerm200ResponseInner
+from rentcast_client.models.rentcast_sale_listing_by_id200_response import RentcastSaleListingById200Response
+from rentcast_client.models.rentcast_sale_listings200_response_inner import RentcastSaleListings200ResponseInner
+from rentcast_client.models.rentcast_value_estimate200_response import RentcastValueEstimate200Response
 
 from rentcast_client.api_client import ApiClient, RequestSerialized
 from rentcast_client.api_response import ApiResponse
@@ -49,8 +49,8 @@ class DefaultRentcast:
     async def market_statistics(
         self,
         zip_code: Annotated[StrictStr, Field(description="A valid 5-digit US zip code")],
-        data_type: Annotated[Optional[StrictStr], Field(description="The type of aggregate market data to retrieve. Defaults to \"All\" if not provided")] = None,
-        history_range: Annotated[Optional[StrictInt], Field(description="The time range for historical record entries, in months. Defaults to 12 if not provided")] = None,
+        data_type: Annotated[Optional[StrictStr], Field(description="The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided")] = None,
+        history_range: Annotated[Optional[StrictInt], Field(description="The time range for historical record entries, in months. Defaults to `12` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -63,16 +63,16 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RentcastRentcastMarketStatistics200Response:
+    ) -> RentcastMarketStatistics200Response:
         """Market Statistics
 
         Returns aggregate market statistics and listing trends for a single US zip code.
 
         :param zip_code: A valid 5-digit US zip code (required)
         :type zip_code: str
-        :param data_type: The type of aggregate market data to retrieve. Defaults to \"All\" if not provided
+        :param data_type: The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided
         :type data_type: str
-        :param history_range: The time range for historical record entries, in months. Defaults to 12 if not provided
+        :param history_range: The time range for historical record entries, in months. Defaults to `12` if not provided
         :type history_range: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -107,7 +107,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastMarketStatistics200Response",
+            '200': "RentcastMarketStatistics200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -124,8 +125,8 @@ class DefaultRentcast:
     async def market_statistics_with_http_info(
         self,
         zip_code: Annotated[StrictStr, Field(description="A valid 5-digit US zip code")],
-        data_type: Annotated[Optional[StrictStr], Field(description="The type of aggregate market data to retrieve. Defaults to \"All\" if not provided")] = None,
-        history_range: Annotated[Optional[StrictInt], Field(description="The time range for historical record entries, in months. Defaults to 12 if not provided")] = None,
+        data_type: Annotated[Optional[StrictStr], Field(description="The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided")] = None,
+        history_range: Annotated[Optional[StrictInt], Field(description="The time range for historical record entries, in months. Defaults to `12` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -138,16 +139,16 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RentcastRentcastMarketStatistics200Response]:
+    ) -> ApiResponse[RentcastMarketStatistics200Response]:
         """Market Statistics
 
         Returns aggregate market statistics and listing trends for a single US zip code.
 
         :param zip_code: A valid 5-digit US zip code (required)
         :type zip_code: str
-        :param data_type: The type of aggregate market data to retrieve. Defaults to \"All\" if not provided
+        :param data_type: The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided
         :type data_type: str
-        :param history_range: The time range for historical record entries, in months. Defaults to 12 if not provided
+        :param history_range: The time range for historical record entries, in months. Defaults to `12` if not provided
         :type history_range: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -182,7 +183,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastMarketStatistics200Response",
+            '200': "RentcastMarketStatistics200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -199,8 +201,8 @@ class DefaultRentcast:
     async def market_statistics_without_preload_content(
         self,
         zip_code: Annotated[StrictStr, Field(description="A valid 5-digit US zip code")],
-        data_type: Annotated[Optional[StrictStr], Field(description="The type of aggregate market data to retrieve. Defaults to \"All\" if not provided")] = None,
-        history_range: Annotated[Optional[StrictInt], Field(description="The time range for historical record entries, in months. Defaults to 12 if not provided")] = None,
+        data_type: Annotated[Optional[StrictStr], Field(description="The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided")] = None,
+        history_range: Annotated[Optional[StrictInt], Field(description="The time range for historical record entries, in months. Defaults to `12` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -220,9 +222,9 @@ class DefaultRentcast:
 
         :param zip_code: A valid 5-digit US zip code (required)
         :type zip_code: str
-        :param data_type: The type of aggregate market data to retrieve. Defaults to \"All\" if not provided
+        :param data_type: The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided
         :type data_type: str
-        :param history_range: The time range for historical record entries, in months. Defaults to 12 if not provided
+        :param history_range: The time range for historical record entries, in months. Defaults to `12` if not provided
         :type history_range: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -257,7 +259,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastMarketStatistics200Response",
+            '200': "RentcastMarketStatistics200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -358,7 +361,7 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RentcastRentcastPropertyRecords200ResponseInner:
+    ) -> RentcastPropertyRecords200ResponseInner:
         """Property Record by Id
 
         Returns a single property record matching the specified id.
@@ -396,7 +399,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastPropertyRecords200ResponseInner",
+            '200': "RentcastPropertyRecords200ResponseInner",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -425,7 +429,7 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RentcastRentcastPropertyRecords200ResponseInner]:
+    ) -> ApiResponse[RentcastPropertyRecords200ResponseInner]:
         """Property Record by Id
 
         Returns a single property record matching the specified id.
@@ -463,7 +467,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastPropertyRecords200ResponseInner",
+            '200': "RentcastPropertyRecords200ResponseInner",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -530,7 +535,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastPropertyRecords200ResponseInner",
+            '200': "RentcastPropertyRecords200ResponseInner",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -606,19 +612,23 @@ class DefaultRentcast:
     @validate_call
     async def property_records(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for properties in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for properties in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for properties in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
-        sale_date_range: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of property records to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first property record to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        sale_date_range: Annotated[Optional[StrictStr], Field(description="The number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of property records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first property record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -631,12 +641,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[RentcastRentcastPropertyRecords200ResponseInner]:
+    ) -> List[RentcastPropertyRecords200ResponseInner]:
         """Property Records
 
         Search for property records in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a circular area
         :type address: str
         :param city: The name of the city, used to search for properties in a specific city. This parameter is case-sensitive
         :type city: str
@@ -644,24 +654,32 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for properties in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
-        :param sale_date_range: The maximum number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range
-        :type sale_date_range: int
-        :param limit: The maximum number of property records to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param bedrooms: The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
+        :param sale_date_range: The number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type sale_date_range: str
+        :param limit: The maximum number of property records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first property record to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first property record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -695,9 +713,13 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             sale_date_range=sale_date_range,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -705,7 +727,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastPropertyRecords200ResponseInner]",
+            '200': "List[RentcastPropertyRecords200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -721,19 +744,23 @@ class DefaultRentcast:
     @validate_call
     async def property_records_with_http_info(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for properties in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for properties in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for properties in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
-        sale_date_range: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of property records to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first property record to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        sale_date_range: Annotated[Optional[StrictStr], Field(description="The number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of property records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first property record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -746,12 +773,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[RentcastRentcastPropertyRecords200ResponseInner]]:
+    ) -> ApiResponse[List[RentcastPropertyRecords200ResponseInner]]:
         """Property Records
 
         Search for property records in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a circular area
         :type address: str
         :param city: The name of the city, used to search for properties in a specific city. This parameter is case-sensitive
         :type city: str
@@ -759,24 +786,32 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for properties in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
-        :param sale_date_range: The maximum number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range
-        :type sale_date_range: int
-        :param limit: The maximum number of property records to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param bedrooms: The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
+        :param sale_date_range: The number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type sale_date_range: str
+        :param limit: The maximum number of property records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first property record to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first property record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -810,9 +845,13 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             sale_date_range=sale_date_range,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -820,7 +859,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastPropertyRecords200ResponseInner]",
+            '200': "List[RentcastPropertyRecords200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -836,19 +876,23 @@ class DefaultRentcast:
     @validate_call
     async def property_records_without_preload_content(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for properties in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for properties in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for properties in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
-        sale_date_range: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of property records to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first property record to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        sale_date_range: Annotated[Optional[StrictStr], Field(description="The number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of property records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first property record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -866,7 +910,7 @@ class DefaultRentcast:
 
         Search for property records in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a circular area
         :type address: str
         :param city: The name of the city, used to search for properties in a specific city. This parameter is case-sensitive
         :type city: str
@@ -874,24 +918,32 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for properties in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
-        :param sale_date_range: The maximum number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range
-        :type sale_date_range: int
-        :param limit: The maximum number of property records to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param bedrooms: The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
+        :param sale_date_range: The number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type sale_date_range: str
+        :param limit: The maximum number of property records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first property record to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first property record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -925,9 +977,13 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             sale_date_range=sale_date_range,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -935,7 +991,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastPropertyRecords200ResponseInner]",
+            '200': "List[RentcastPropertyRecords200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -956,9 +1013,13 @@ class DefaultRentcast:
         property_type,
         bedrooms,
         bathrooms,
+        square_footage,
+        lot_size,
+        year_built,
         sale_date_range,
         limit,
         offset,
+        include_total_count,
         _request_auth,
         _content_type,
         _headers,
@@ -1021,6 +1082,18 @@ class DefaultRentcast:
             
             _query_params.append(('bathrooms', bathrooms))
             
+        if square_footage is not None:
+            
+            _query_params.append(('squareFootage', square_footage))
+            
+        if lot_size is not None:
+            
+            _query_params.append(('lotSize', lot_size))
+            
+        if year_built is not None:
+            
+            _query_params.append(('yearBuilt', year_built))
+            
         if sale_date_range is not None:
             
             _query_params.append(('saleDateRange', sale_date_range))
@@ -1032,6 +1105,10 @@ class DefaultRentcast:
         if offset is not None:
             
             _query_params.append(('offset', offset))
+            
+        if include_total_count is not None:
+            
+            _query_params.append(('includeTotalCount', include_total_count))
             
         # process the header parameters
         # process the form parameters
@@ -1073,7 +1150,7 @@ class DefaultRentcast:
     @validate_call
     async def property_records_random(
         self,
-        limit: Annotated[Optional[StrictInt], Field(description="The number of property records to return, between 1 and 500. Defaults to 50 if not provided")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The number of property records to return, between 1 and 500. Defaults to `50` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1086,12 +1163,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[RentcastRentcastPropertyRecords200ResponseInner]:
+    ) -> List[RentcastPropertyRecords200ResponseInner]:
         """Random Property Records
 
         Returns a list of property records selected at random.
 
-        :param limit: The number of property records to return, between 1 and 500. Defaults to 50 if not provided
+        :param limit: The number of property records to return, between 1 and 500. Defaults to `50` if not provided
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1124,7 +1201,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastPropertyRecords200ResponseInner]",
+            '200': "List[RentcastPropertyRecords200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1140,7 +1218,7 @@ class DefaultRentcast:
     @validate_call
     async def property_records_random_with_http_info(
         self,
-        limit: Annotated[Optional[StrictInt], Field(description="The number of property records to return, between 1 and 500. Defaults to 50 if not provided")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The number of property records to return, between 1 and 500. Defaults to `50` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1153,12 +1231,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[RentcastRentcastPropertyRecords200ResponseInner]]:
+    ) -> ApiResponse[List[RentcastPropertyRecords200ResponseInner]]:
         """Random Property Records
 
         Returns a list of property records selected at random.
 
-        :param limit: The number of property records to return, between 1 and 500. Defaults to 50 if not provided
+        :param limit: The number of property records to return, between 1 and 500. Defaults to `50` if not provided
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1191,7 +1269,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastPropertyRecords200ResponseInner]",
+            '200': "List[RentcastPropertyRecords200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1207,7 +1286,7 @@ class DefaultRentcast:
     @validate_call
     async def property_records_random_without_preload_content(
         self,
-        limit: Annotated[Optional[StrictInt], Field(description="The number of property records to return, between 1 and 500. Defaults to 50 if not provided")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The number of property records to return, between 1 and 500. Defaults to `50` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1225,7 +1304,7 @@ class DefaultRentcast:
 
         Returns a list of property records selected at random.
 
-        :param limit: The number of property records to return, between 1 and 500. Defaults to 50 if not provided
+        :param limit: The number of property records to return, between 1 and 500. Defaults to `50` if not provided
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1258,7 +1337,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastPropertyRecords200ResponseInner]",
+            '200': "List[RentcastPropertyRecords200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1336,7 +1416,7 @@ class DefaultRentcast:
     @validate_call
     async def rent_estimate_long_term(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
         latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         property_type: Annotated[Optional[StrictStr], Field(description="The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
@@ -1345,7 +1425,8 @@ class DefaultRentcast:
         square_footage: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The total living area size of the property, in square feet")] = None,
         max_radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The maximum distance between comparable listings and the subject property, in miles")] = None,
         days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since comparable listings were last seen on the market, with a minimum of 1")] = None,
-        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to 15 if not provided")] = None,
+        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided")] = None,
+        lookup_subject_attributes: Annotated[Optional[StrictBool], Field(description="When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1358,12 +1439,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RentcastRentcastRentEstimateLongTerm200Response:
+    ) -> RentcastRentEstimateLongTerm200Response:
         """Rent Estimate
 
         Returns a property rent estimate and comparable properties.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
         :type address: str
         :param latitude: The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter
         :type latitude: float
@@ -1381,8 +1462,10 @@ class DefaultRentcast:
         :type max_radius: float
         :param days_old: The maximum number of days since comparable listings were last seen on the market, with a minimum of 1
         :type days_old: int
-        :param comp_count: The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to 15 if not provided
+        :param comp_count: The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided
         :type comp_count: int
+        :param lookup_subject_attributes: When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature
+        :type lookup_subject_attributes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1416,6 +1499,7 @@ class DefaultRentcast:
             max_radius=max_radius,
             days_old=days_old,
             comp_count=comp_count,
+            lookup_subject_attributes=lookup_subject_attributes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1423,7 +1507,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastRentEstimateLongTerm200Response",
+            '200': "RentcastRentEstimateLongTerm200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1439,7 +1524,7 @@ class DefaultRentcast:
     @validate_call
     async def rent_estimate_long_term_with_http_info(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
         latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         property_type: Annotated[Optional[StrictStr], Field(description="The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
@@ -1448,7 +1533,8 @@ class DefaultRentcast:
         square_footage: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The total living area size of the property, in square feet")] = None,
         max_radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The maximum distance between comparable listings and the subject property, in miles")] = None,
         days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since comparable listings were last seen on the market, with a minimum of 1")] = None,
-        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to 15 if not provided")] = None,
+        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided")] = None,
+        lookup_subject_attributes: Annotated[Optional[StrictBool], Field(description="When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1461,12 +1547,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RentcastRentcastRentEstimateLongTerm200Response]:
+    ) -> ApiResponse[RentcastRentEstimateLongTerm200Response]:
         """Rent Estimate
 
         Returns a property rent estimate and comparable properties.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
         :type address: str
         :param latitude: The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter
         :type latitude: float
@@ -1484,8 +1570,10 @@ class DefaultRentcast:
         :type max_radius: float
         :param days_old: The maximum number of days since comparable listings were last seen on the market, with a minimum of 1
         :type days_old: int
-        :param comp_count: The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to 15 if not provided
+        :param comp_count: The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided
         :type comp_count: int
+        :param lookup_subject_attributes: When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature
+        :type lookup_subject_attributes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1519,6 +1607,7 @@ class DefaultRentcast:
             max_radius=max_radius,
             days_old=days_old,
             comp_count=comp_count,
+            lookup_subject_attributes=lookup_subject_attributes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1526,7 +1615,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastRentEstimateLongTerm200Response",
+            '200': "RentcastRentEstimateLongTerm200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1542,7 +1632,7 @@ class DefaultRentcast:
     @validate_call
     async def rent_estimate_long_term_without_preload_content(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
         latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         property_type: Annotated[Optional[StrictStr], Field(description="The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
@@ -1551,7 +1641,8 @@ class DefaultRentcast:
         square_footage: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The total living area size of the property, in square feet")] = None,
         max_radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The maximum distance between comparable listings and the subject property, in miles")] = None,
         days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since comparable listings were last seen on the market, with a minimum of 1")] = None,
-        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to 15 if not provided")] = None,
+        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided")] = None,
+        lookup_subject_attributes: Annotated[Optional[StrictBool], Field(description="When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1569,7 +1660,7 @@ class DefaultRentcast:
 
         Returns a property rent estimate and comparable properties.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
         :type address: str
         :param latitude: The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter
         :type latitude: float
@@ -1587,8 +1678,10 @@ class DefaultRentcast:
         :type max_radius: float
         :param days_old: The maximum number of days since comparable listings were last seen on the market, with a minimum of 1
         :type days_old: int
-        :param comp_count: The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to 15 if not provided
+        :param comp_count: The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided
         :type comp_count: int
+        :param lookup_subject_attributes: When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature
+        :type lookup_subject_attributes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1622,6 +1715,7 @@ class DefaultRentcast:
             max_radius=max_radius,
             days_old=days_old,
             comp_count=comp_count,
+            lookup_subject_attributes=lookup_subject_attributes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1629,7 +1723,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastRentEstimateLongTerm200Response",
+            '200': "RentcastRentEstimateLongTerm200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1650,6 +1745,7 @@ class DefaultRentcast:
         max_radius,
         days_old,
         comp_count,
+        lookup_subject_attributes,
         _request_auth,
         _content_type,
         _headers,
@@ -1712,6 +1808,10 @@ class DefaultRentcast:
             
             _query_params.append(('compCount', comp_count))
             
+        if lookup_subject_attributes is not None:
+            
+            _query_params.append(('lookupSubjectAttributes', lookup_subject_attributes))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -1765,7 +1865,7 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RentcastRentcastRentalListingsLongTerm200ResponseInner:
+    ) -> RentcastRentalListingsLongTerm200ResponseInner:
         """Rental Listing by Id
 
         Returns a single rental listing matching the specified id.
@@ -1803,7 +1903,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastRentalListingsLongTerm200ResponseInner",
+            '200': "RentcastRentalListingsLongTerm200ResponseInner",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1832,7 +1933,7 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RentcastRentcastRentalListingsLongTerm200ResponseInner]:
+    ) -> ApiResponse[RentcastRentalListingsLongTerm200ResponseInner]:
         """Rental Listing by Id
 
         Returns a single rental listing matching the specified id.
@@ -1870,7 +1971,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastRentalListingsLongTerm200ResponseInner",
+            '200': "RentcastRentalListingsLongTerm200ResponseInner",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1937,7 +2039,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastRentalListingsLongTerm200ResponseInner",
+            '200': "RentcastRentalListingsLongTerm200ResponseInner",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2013,20 +2116,25 @@ class DefaultRentcast:
     @validate_call
     async def rental_listings_long_term(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for listings in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for listings in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)")] = None,
-        days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was listed on the market, with a minimum of 1")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        price: Annotated[Optional[StrictStr], Field(description="The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        days_old: Annotated[Optional[StrictStr], Field(description="The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2039,12 +2147,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[RentcastRentcastRentalListingsLongTerm200ResponseInner]:
+    ) -> List[RentcastRentalListingsLongTerm200ResponseInner]:
         """Rental Listings
 
         Search for rental listings in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area
         :type address: str
         :param city: The name of the city, used to search for listings in a specific city. This parameter is case-sensitive
         :type city: str
@@ -2052,26 +2160,36 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for listings in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
+        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
         :param status: The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)
         :type status: str
-        :param days_old: The maximum number of days since a property was listed on the market, with a minimum of 1
-        :type days_old: int
-        :param limit: The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param price: The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type price: str
+        :param days_old: The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type days_old: str
+        :param limit: The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2105,10 +2223,15 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             status=status,
+            price=price,
             days_old=days_old,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2116,7 +2239,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastRentalListingsLongTerm200ResponseInner]",
+            '200': "List[RentcastRentalListingsLongTerm200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2132,20 +2256,25 @@ class DefaultRentcast:
     @validate_call
     async def rental_listings_long_term_with_http_info(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for listings in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for listings in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)")] = None,
-        days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was listed on the market, with a minimum of 1")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        price: Annotated[Optional[StrictStr], Field(description="The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        days_old: Annotated[Optional[StrictStr], Field(description="The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2158,12 +2287,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[RentcastRentcastRentalListingsLongTerm200ResponseInner]]:
+    ) -> ApiResponse[List[RentcastRentalListingsLongTerm200ResponseInner]]:
         """Rental Listings
 
         Search for rental listings in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area
         :type address: str
         :param city: The name of the city, used to search for listings in a specific city. This parameter is case-sensitive
         :type city: str
@@ -2171,26 +2300,36 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for listings in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
+        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
         :param status: The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)
         :type status: str
-        :param days_old: The maximum number of days since a property was listed on the market, with a minimum of 1
-        :type days_old: int
-        :param limit: The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param price: The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type price: str
+        :param days_old: The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type days_old: str
+        :param limit: The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2224,10 +2363,15 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             status=status,
+            price=price,
             days_old=days_old,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2235,7 +2379,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastRentalListingsLongTerm200ResponseInner]",
+            '200': "List[RentcastRentalListingsLongTerm200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2251,20 +2396,25 @@ class DefaultRentcast:
     @validate_call
     async def rental_listings_long_term_without_preload_content(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for listings in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for listings in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)")] = None,
-        days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was listed on the market, with a minimum of 1")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        price: Annotated[Optional[StrictStr], Field(description="The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        days_old: Annotated[Optional[StrictStr], Field(description="The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2282,7 +2432,7 @@ class DefaultRentcast:
 
         Search for rental listings in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area
         :type address: str
         :param city: The name of the city, used to search for listings in a specific city. This parameter is case-sensitive
         :type city: str
@@ -2290,26 +2440,36 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for listings in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
+        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
         :param status: The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)
         :type status: str
-        :param days_old: The maximum number of days since a property was listed on the market, with a minimum of 1
-        :type days_old: int
-        :param limit: The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param price: The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type price: str
+        :param days_old: The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type days_old: str
+        :param limit: The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2343,10 +2503,15 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             status=status,
+            price=price,
             days_old=days_old,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2354,7 +2519,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastRentalListingsLongTerm200ResponseInner]",
+            '200': "List[RentcastRentalListingsLongTerm200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2375,10 +2541,15 @@ class DefaultRentcast:
         property_type,
         bedrooms,
         bathrooms,
+        square_footage,
+        lot_size,
+        year_built,
         status,
+        price,
         days_old,
         limit,
         offset,
+        include_total_count,
         _request_auth,
         _content_type,
         _headers,
@@ -2441,9 +2612,25 @@ class DefaultRentcast:
             
             _query_params.append(('bathrooms', bathrooms))
             
+        if square_footage is not None:
+            
+            _query_params.append(('squareFootage', square_footage))
+            
+        if lot_size is not None:
+            
+            _query_params.append(('lotSize', lot_size))
+            
+        if year_built is not None:
+            
+            _query_params.append(('yearBuilt', year_built))
+            
         if status is not None:
             
             _query_params.append(('status', status))
+            
+        if price is not None:
+            
+            _query_params.append(('price', price))
             
         if days_old is not None:
             
@@ -2456,6 +2643,10 @@ class DefaultRentcast:
         if offset is not None:
             
             _query_params.append(('offset', offset))
+            
+        if include_total_count is not None:
+            
+            _query_params.append(('includeTotalCount', include_total_count))
             
         # process the header parameters
         # process the form parameters
@@ -2510,7 +2701,7 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RentcastRentcastSaleListings200ResponseInner:
+    ) -> RentcastSaleListingById200Response:
         """Sale Listing by Id
 
         Returns a single sale listing matching the specified id.
@@ -2548,7 +2739,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastSaleListings200ResponseInner",
+            '200': "RentcastSaleListingById200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2577,7 +2769,7 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RentcastRentcastSaleListings200ResponseInner]:
+    ) -> ApiResponse[RentcastSaleListingById200Response]:
         """Sale Listing by Id
 
         Returns a single sale listing matching the specified id.
@@ -2615,7 +2807,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastSaleListings200ResponseInner",
+            '200': "RentcastSaleListingById200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2682,7 +2875,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastSaleListings200ResponseInner",
+            '200': "RentcastSaleListingById200Response",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2758,20 +2952,25 @@ class DefaultRentcast:
     @validate_call
     async def sale_listings(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for listings in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for listings in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)")] = None,
-        days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was listed on the market, with a minimum of 1")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        price: Annotated[Optional[StrictStr], Field(description="The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        days_old: Annotated[Optional[StrictStr], Field(description="The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2784,12 +2983,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[RentcastRentcastSaleListings200ResponseInner]:
+    ) -> List[RentcastSaleListings200ResponseInner]:
         """Sale Listings
 
         Search for sale listings in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area
         :type address: str
         :param city: The name of the city, used to search for listings in a specific city. This parameter is case-sensitive
         :type city: str
@@ -2797,26 +2996,36 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for listings in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
+        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
         :param status: The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)
         :type status: str
-        :param days_old: The maximum number of days since a property was listed on the market, with a minimum of 1
-        :type days_old: int
-        :param limit: The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param price: The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type price: str
+        :param days_old: The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type days_old: str
+        :param limit: The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2850,10 +3059,15 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             status=status,
+            price=price,
             days_old=days_old,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2861,7 +3075,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastSaleListings200ResponseInner]",
+            '200': "List[RentcastSaleListings200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2877,20 +3092,25 @@ class DefaultRentcast:
     @validate_call
     async def sale_listings_with_http_info(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for listings in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for listings in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)")] = None,
-        days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was listed on the market, with a minimum of 1")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        price: Annotated[Optional[StrictStr], Field(description="The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        days_old: Annotated[Optional[StrictStr], Field(description="The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2903,12 +3123,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[RentcastRentcastSaleListings200ResponseInner]]:
+    ) -> ApiResponse[List[RentcastSaleListings200ResponseInner]]:
         """Sale Listings
 
         Search for sale listings in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area
         :type address: str
         :param city: The name of the city, used to search for listings in a specific city. This parameter is case-sensitive
         :type city: str
@@ -2916,26 +3136,36 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for listings in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
+        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
         :param status: The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)
         :type status: str
-        :param days_old: The maximum number of days since a property was listed on the market, with a minimum of 1
-        :type days_old: int
-        :param limit: The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param price: The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type price: str
+        :param days_old: The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type days_old: str
+        :param limit: The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2969,10 +3199,15 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             status=status,
+            price=price,
             days_old=days_old,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2980,7 +3215,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastSaleListings200ResponseInner]",
+            '200': "List[RentcastSaleListings200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2996,20 +3232,25 @@ class DefaultRentcast:
     @validate_call
     async def sale_listings_without_preload_content(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area")] = None,
         city: Annotated[Optional[StrictStr], Field(description="The name of the city, used to search for listings in a specific city. This parameter is case-sensitive")] = None,
         state: Annotated[Optional[StrictStr], Field(description="The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive")] = None,
         zip_code: Annotated[Optional[StrictStr], Field(description="The 5-digit zip code, used to search for listings in a specific zip code")] = None,
-        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area")] = None,
-        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area")] = None,
-        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
-        bedrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout")] = None,
-        bathrooms: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms")] = None,
+        latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area")] = None,
+        radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area")] = None,
+        property_type: Annotated[Optional[StrictStr], Field(description="The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bedrooms: Annotated[Optional[StrictStr], Field(description="The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        bathrooms: Annotated[Optional[StrictStr], Field(description="The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        square_footage: Annotated[Optional[StrictStr], Field(description="The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        lot_size: Annotated[Optional[StrictStr], Field(description="The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        year_built: Annotated[Optional[StrictStr], Field(description="The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)")] = None,
-        days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since a property was listed on the market, with a minimum of 1")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        price: Annotated[Optional[StrictStr], Field(description="The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)")] = None,
+        days_old: Annotated[Optional[StrictStr], Field(description="The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination")] = None,
+        include_total_count: Annotated[Optional[StrictBool], Field(description="When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3027,7 +3268,7 @@ class DefaultRentcast:
 
         Search for sale listings in a geographical area, or by a specific address.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a specific area
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area
         :type address: str
         :param city: The name of the city, used to search for listings in a specific city. This parameter is case-sensitive
         :type city: str
@@ -3035,26 +3276,36 @@ class DefaultRentcast:
         :type state: str
         :param zip_code: The 5-digit zip code, used to search for listings in a specific zip code
         :type zip_code: str
-        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param latitude: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type latitude: float
-        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a specific area
+        :param longitude: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
         :type longitude: float
-        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a specific area
+        :param radius: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area
         :type radius: float
-        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types)
+        :param property_type: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
         :type property_type: str
-        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout
-        :type bedrooms: float
-        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms
-        :type bathrooms: float
+        :param bedrooms: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bedrooms: str
+        :param bathrooms: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type bathrooms: str
+        :param square_footage: The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type square_footage: str
+        :param lot_size: The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type lot_size: str
+        :param year_built: The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type year_built: str
         :param status: The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)
         :type status: str
-        :param days_old: The maximum number of days since a property was listed on the market, with a minimum of 1
-        :type days_old: int
-        :param limit: The maximum number of listings to return, between 1 and 500. Defaults to 50 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param price: The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        :type price: str
+        :param days_old: The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+        :type days_old: str
+        :param limit: The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type limit: int
-        :param offset: The index of the first listing to return, used to paginate through large lists of results. Defaults to 0 if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+        :param offset: The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
         :type offset: int
+        :param include_total_count: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+        :type include_total_count: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3088,10 +3339,15 @@ class DefaultRentcast:
             property_type=property_type,
             bedrooms=bedrooms,
             bathrooms=bathrooms,
+            square_footage=square_footage,
+            lot_size=lot_size,
+            year_built=year_built,
             status=status,
+            price=price,
             days_old=days_old,
             limit=limit,
             offset=offset,
+            include_total_count=include_total_count,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3099,7 +3355,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[RentcastRentcastSaleListings200ResponseInner]",
+            '200': "List[RentcastSaleListings200ResponseInner]",
+            '401': "RentcastPropertyRecords401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3120,10 +3377,15 @@ class DefaultRentcast:
         property_type,
         bedrooms,
         bathrooms,
+        square_footage,
+        lot_size,
+        year_built,
         status,
+        price,
         days_old,
         limit,
         offset,
+        include_total_count,
         _request_auth,
         _content_type,
         _headers,
@@ -3186,9 +3448,25 @@ class DefaultRentcast:
             
             _query_params.append(('bathrooms', bathrooms))
             
+        if square_footage is not None:
+            
+            _query_params.append(('squareFootage', square_footage))
+            
+        if lot_size is not None:
+            
+            _query_params.append(('lotSize', lot_size))
+            
+        if year_built is not None:
+            
+            _query_params.append(('yearBuilt', year_built))
+            
         if status is not None:
             
             _query_params.append(('status', status))
+            
+        if price is not None:
+            
+            _query_params.append(('price', price))
             
         if days_old is not None:
             
@@ -3201,6 +3479,10 @@ class DefaultRentcast:
         if offset is not None:
             
             _query_params.append(('offset', offset))
+            
+        if include_total_count is not None:
+            
+            _query_params.append(('includeTotalCount', include_total_count))
             
         # process the header parameters
         # process the form parameters
@@ -3242,7 +3524,7 @@ class DefaultRentcast:
     @validate_call
     async def value_estimate(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
         latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         property_type: Annotated[Optional[StrictStr], Field(description="The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
@@ -3251,7 +3533,8 @@ class DefaultRentcast:
         square_footage: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The total living area size of the property, in square feet")] = None,
         max_radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The maximum distance between comparable listings and the subject property, in miles")] = None,
         days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since comparable listings were last seen on the market, with a minimum of 1")] = None,
-        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to 15 if not provided")] = None,
+        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided")] = None,
+        lookup_subject_attributes: Annotated[Optional[StrictBool], Field(description="When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3264,12 +3547,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RentcastRentcastValueEstimate200Response:
+    ) -> RentcastValueEstimate200Response:
         """Value Estimate
 
         Returns a property value estimate and comparable properties.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
         :type address: str
         :param latitude: The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter
         :type latitude: float
@@ -3287,8 +3570,10 @@ class DefaultRentcast:
         :type max_radius: float
         :param days_old: The maximum number of days since comparable listings were last seen on the market, with a minimum of 1
         :type days_old: int
-        :param comp_count: The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to 15 if not provided
+        :param comp_count: The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided
         :type comp_count: int
+        :param lookup_subject_attributes: When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature
+        :type lookup_subject_attributes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3322,6 +3607,7 @@ class DefaultRentcast:
             max_radius=max_radius,
             days_old=days_old,
             comp_count=comp_count,
+            lookup_subject_attributes=lookup_subject_attributes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3329,7 +3615,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastValueEstimate200Response",
+            '200': "RentcastValueEstimate200Response",
+            '401': "RentcastValueEstimate401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3345,7 +3632,7 @@ class DefaultRentcast:
     @validate_call
     async def value_estimate_with_http_info(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
         latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         property_type: Annotated[Optional[StrictStr], Field(description="The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
@@ -3354,7 +3641,8 @@ class DefaultRentcast:
         square_footage: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The total living area size of the property, in square feet")] = None,
         max_radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The maximum distance between comparable listings and the subject property, in miles")] = None,
         days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since comparable listings were last seen on the market, with a minimum of 1")] = None,
-        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to 15 if not provided")] = None,
+        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided")] = None,
+        lookup_subject_attributes: Annotated[Optional[StrictBool], Field(description="When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3367,12 +3655,12 @@ class DefaultRentcast:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[RentcastRentcastValueEstimate200Response]:
+    ) -> ApiResponse[RentcastValueEstimate200Response]:
         """Value Estimate
 
         Returns a property value estimate and comparable properties.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
         :type address: str
         :param latitude: The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter
         :type latitude: float
@@ -3390,8 +3678,10 @@ class DefaultRentcast:
         :type max_radius: float
         :param days_old: The maximum number of days since comparable listings were last seen on the market, with a minimum of 1
         :type days_old: int
-        :param comp_count: The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to 15 if not provided
+        :param comp_count: The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided
         :type comp_count: int
+        :param lookup_subject_attributes: When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature
+        :type lookup_subject_attributes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3425,6 +3715,7 @@ class DefaultRentcast:
             max_radius=max_radius,
             days_old=days_old,
             comp_count=comp_count,
+            lookup_subject_attributes=lookup_subject_attributes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3432,7 +3723,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastValueEstimate200Response",
+            '200': "RentcastValueEstimate200Response",
+            '401': "RentcastValueEstimate401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3448,7 +3740,7 @@ class DefaultRentcast:
     @validate_call
     async def value_estimate_without_preload_content(
         self,
-        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters")] = None,
         latitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         longitude: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter")] = None,
         property_type: Annotated[Optional[StrictStr], Field(description="The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)")] = None,
@@ -3457,7 +3749,8 @@ class DefaultRentcast:
         square_footage: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The total living area size of the property, in square feet")] = None,
         max_radius: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The maximum distance between comparable listings and the subject property, in miles")] = None,
         days_old: Annotated[Optional[StrictInt], Field(description="The maximum number of days since comparable listings were last seen on the market, with a minimum of 1")] = None,
-        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to 15 if not provided")] = None,
+        comp_count: Annotated[Optional[StrictInt], Field(description="The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided")] = None,
+        lookup_subject_attributes: Annotated[Optional[StrictBool], Field(description="When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3475,7 +3768,7 @@ class DefaultRentcast:
 
         Returns a property value estimate and comparable properties.
 
-        :param address: The **full address** of the property, in the format of `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
+        :param address: The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters
         :type address: str
         :param latitude: The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter
         :type latitude: float
@@ -3493,8 +3786,10 @@ class DefaultRentcast:
         :type max_radius: float
         :param days_old: The maximum number of days since comparable listings were last seen on the market, with a minimum of 1
         :type days_old: int
-        :param comp_count: The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to 15 if not provided
+        :param comp_count: The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided
         :type comp_count: int
+        :param lookup_subject_attributes: When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature
+        :type lookup_subject_attributes: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3528,6 +3823,7 @@ class DefaultRentcast:
             max_radius=max_radius,
             days_old=days_old,
             comp_count=comp_count,
+            lookup_subject_attributes=lookup_subject_attributes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3535,7 +3831,8 @@ class DefaultRentcast:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "RentcastRentcastValueEstimate200Response",
+            '200': "RentcastValueEstimate200Response",
+            '401': "RentcastValueEstimate401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3556,6 +3853,7 @@ class DefaultRentcast:
         max_radius,
         days_old,
         comp_count,
+        lookup_subject_attributes,
         _request_auth,
         _content_type,
         _headers,
@@ -3617,6 +3915,10 @@ class DefaultRentcast:
         if comp_count is not None:
             
             _query_params.append(('compCount', comp_count))
+            
+        if lookup_subject_attributes is not None:
+            
+            _query_params.append(('lookupSubjectAttributes', lookup_subject_attributes))
             
         # process the header parameters
         # process the form parameters

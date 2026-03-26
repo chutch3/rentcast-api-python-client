@@ -18,42 +18,48 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from rentcast_client.models.rentcast_market_statistics200_response_rental_data_data_by_bedrooms_inner import RentcastMarketStatistics200ResponseRentalDataDataByBedroomsInner
+from rentcast_client.models.rentcast_market_statistics200_response_rental_data_data_by_property_type_inner import RentcastMarketStatistics200ResponseRentalDataDataByPropertyTypeInner
+from rentcast_client.models.rentcast_market_statistics200_response_rental_data_history import RentcastMarketStatistics200ResponseRentalDataHistory
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastMarketStatistics200ResponseRentalData(BaseModel):
     """
     RentcastMarketStatistics200ResponseRentalData
     """ # noqa: E501
-    last_updated_date: Optional[StrictStr] = Field(default=None, alias="lastUpdatedDate")
-    average_rent: Optional[StrictInt] = Field(default=0, alias="averageRent")
-    median_rent: Optional[StrictInt] = Field(default=0, alias="medianRent")
-    min_rent: Optional[StrictInt] = Field(default=0, alias="minRent")
-    max_rent: Optional[StrictInt] = Field(default=0, alias="maxRent")
-    average_rent_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=0, alias="averageRentPerSquareFoot")
-    median_rent_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=0, alias="medianRentPerSquareFoot")
-    min_rent_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=0, alias="minRentPerSquareFoot")
-    max_rent_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=0, alias="maxRentPerSquareFoot")
-    average_square_footage: Optional[StrictInt] = Field(default=0, alias="averageSquareFootage")
-    median_square_footage: Optional[StrictInt] = Field(default=0, alias="medianSquareFootage")
-    min_square_footage: Optional[StrictInt] = Field(default=0, alias="minSquareFootage")
-    max_square_footage: Optional[StrictInt] = Field(default=0, alias="maxSquareFootage")
-    average_days_on_market: Optional[StrictInt] = Field(default=0, alias="averageDaysOnMarket")
-    median_days_on_market: Optional[StrictInt] = Field(default=0, alias="medianDaysOnMarket")
-    min_days_on_market: Optional[StrictInt] = Field(default=0, alias="minDaysOnMarket")
-    max_days_on_market: Optional[StrictInt] = Field(default=0, alias="maxDaysOnMarket")
-    new_listings: Optional[StrictInt] = Field(default=0, alias="newListings")
-    total_listings: Optional[StrictInt] = Field(default=0, alias="totalListings")
-    data_by_property_type: Optional[List[RentcastRentcastMarketStatistics200ResponseRentalDataDataByPropertyTypeInner]] = Field(default=None, alias="dataByPropertyType")
-    data_by_bedrooms: Optional[List[RentcastRentcastMarketStatistics200ResponseRentalDataDataByBedroomsInner]] = Field(default=None, alias="dataByBedrooms")
-    history: Optional[RentcastRentcastMarketStatistics200ResponseRentalDataHistory] = None
+    last_updated_date: Optional[datetime] = Field(default=None, alias="lastUpdatedDate")
+    average_rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="averageRent")
+    median_rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="medianRent")
+    min_rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="minRent")
+    max_rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="maxRent")
+    average_rent_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="averageRentPerSquareFoot")
+    median_rent_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="medianRentPerSquareFoot")
+    min_rent_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="minRentPerSquareFoot")
+    max_rent_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="maxRentPerSquareFoot")
+    average_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="averageSquareFootage")
+    median_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="medianSquareFootage")
+    min_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="minSquareFootage")
+    max_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="maxSquareFootage")
+    average_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="averageDaysOnMarket")
+    median_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="medianDaysOnMarket")
+    min_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="minDaysOnMarket")
+    max_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="maxDaysOnMarket")
+    new_listings: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="newListings")
+    total_listings: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="totalListings")
+    data_by_property_type: Optional[List[RentcastMarketStatistics200ResponseRentalDataDataByPropertyTypeInner]] = Field(default=None, alias="dataByPropertyType")
+    data_by_bedrooms: Optional[List[RentcastMarketStatistics200ResponseRentalDataDataByBedroomsInner]] = Field(default=None, alias="dataByBedrooms")
+    history: Optional[RentcastMarketStatistics200ResponseRentalDataHistory] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["lastUpdatedDate", "averageRent", "medianRent", "minRent", "maxRent", "averageRentPerSquareFoot", "medianRentPerSquareFoot", "minRentPerSquareFoot", "maxRentPerSquareFoot", "averageSquareFootage", "medianSquareFootage", "minSquareFootage", "maxSquareFootage", "averageDaysOnMarket", "medianDaysOnMarket", "minDaysOnMarket", "maxDaysOnMarket", "newListings", "totalListings", "dataByPropertyType", "dataByBedrooms", "history"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -65,8 +71,7 @@ class RentcastMarketStatistics200ResponseRentalData(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -128,27 +133,27 @@ class RentcastMarketStatistics200ResponseRentalData(BaseModel):
 
         _obj = cls.model_validate({
             "lastUpdatedDate": obj.get("lastUpdatedDate"),
-            "averageRent": obj.get("averageRent") if obj.get("averageRent") is not None else 0,
-            "medianRent": obj.get("medianRent") if obj.get("medianRent") is not None else 0,
-            "minRent": obj.get("minRent") if obj.get("minRent") is not None else 0,
-            "maxRent": obj.get("maxRent") if obj.get("maxRent") is not None else 0,
-            "averageRentPerSquareFoot": obj.get("averageRentPerSquareFoot") if obj.get("averageRentPerSquareFoot") is not None else 0,
-            "medianRentPerSquareFoot": obj.get("medianRentPerSquareFoot") if obj.get("medianRentPerSquareFoot") is not None else 0,
-            "minRentPerSquareFoot": obj.get("minRentPerSquareFoot") if obj.get("minRentPerSquareFoot") is not None else 0,
-            "maxRentPerSquareFoot": obj.get("maxRentPerSquareFoot") if obj.get("maxRentPerSquareFoot") is not None else 0,
-            "averageSquareFootage": obj.get("averageSquareFootage") if obj.get("averageSquareFootage") is not None else 0,
-            "medianSquareFootage": obj.get("medianSquareFootage") if obj.get("medianSquareFootage") is not None else 0,
-            "minSquareFootage": obj.get("minSquareFootage") if obj.get("minSquareFootage") is not None else 0,
-            "maxSquareFootage": obj.get("maxSquareFootage") if obj.get("maxSquareFootage") is not None else 0,
-            "averageDaysOnMarket": obj.get("averageDaysOnMarket") if obj.get("averageDaysOnMarket") is not None else 0,
-            "medianDaysOnMarket": obj.get("medianDaysOnMarket") if obj.get("medianDaysOnMarket") is not None else 0,
-            "minDaysOnMarket": obj.get("minDaysOnMarket") if obj.get("minDaysOnMarket") is not None else 0,
-            "maxDaysOnMarket": obj.get("maxDaysOnMarket") if obj.get("maxDaysOnMarket") is not None else 0,
-            "newListings": obj.get("newListings") if obj.get("newListings") is not None else 0,
-            "totalListings": obj.get("totalListings") if obj.get("totalListings") is not None else 0,
-            "dataByPropertyType": [RentcastRentcastMarketStatistics200ResponseRentalDataDataByPropertyTypeInner.from_dict(_item) for _item in obj["dataByPropertyType"]] if obj.get("dataByPropertyType") is not None else None,
-            "dataByBedrooms": [RentcastRentcastMarketStatistics200ResponseRentalDataDataByBedroomsInner.from_dict(_item) for _item in obj["dataByBedrooms"]] if obj.get("dataByBedrooms") is not None else None,
-            "history": RentcastRentcastMarketStatistics200ResponseRentalDataHistory.from_dict(obj["history"]) if obj.get("history") is not None else None
+            "averageRent": obj.get("averageRent") if obj.get("averageRent") is not None else ,
+            "medianRent": obj.get("medianRent") if obj.get("medianRent") is not None else ,
+            "minRent": obj.get("minRent") if obj.get("minRent") is not None else ,
+            "maxRent": obj.get("maxRent") if obj.get("maxRent") is not None else ,
+            "averageRentPerSquareFoot": obj.get("averageRentPerSquareFoot") if obj.get("averageRentPerSquareFoot") is not None else ,
+            "medianRentPerSquareFoot": obj.get("medianRentPerSquareFoot") if obj.get("medianRentPerSquareFoot") is not None else ,
+            "minRentPerSquareFoot": obj.get("minRentPerSquareFoot") if obj.get("minRentPerSquareFoot") is not None else ,
+            "maxRentPerSquareFoot": obj.get("maxRentPerSquareFoot") if obj.get("maxRentPerSquareFoot") is not None else ,
+            "averageSquareFootage": obj.get("averageSquareFootage") if obj.get("averageSquareFootage") is not None else ,
+            "medianSquareFootage": obj.get("medianSquareFootage") if obj.get("medianSquareFootage") is not None else ,
+            "minSquareFootage": obj.get("minSquareFootage") if obj.get("minSquareFootage") is not None else ,
+            "maxSquareFootage": obj.get("maxSquareFootage") if obj.get("maxSquareFootage") is not None else ,
+            "averageDaysOnMarket": obj.get("averageDaysOnMarket") if obj.get("averageDaysOnMarket") is not None else ,
+            "medianDaysOnMarket": obj.get("medianDaysOnMarket") if obj.get("medianDaysOnMarket") is not None else ,
+            "minDaysOnMarket": obj.get("minDaysOnMarket") if obj.get("minDaysOnMarket") is not None else ,
+            "maxDaysOnMarket": obj.get("maxDaysOnMarket") if obj.get("maxDaysOnMarket") is not None else ,
+            "newListings": obj.get("newListings") if obj.get("newListings") is not None else ,
+            "totalListings": obj.get("totalListings") if obj.get("totalListings") is not None else ,
+            "dataByPropertyType": [RentcastMarketStatistics200ResponseRentalDataDataByPropertyTypeInner.from_dict(_item) for _item in obj["dataByPropertyType"]] if obj.get("dataByPropertyType") is not None else None,
+            "dataByBedrooms": [RentcastMarketStatistics200ResponseRentalDataDataByBedroomsInner.from_dict(_item) for _item in obj["dataByBedrooms"]] if obj.get("dataByBedrooms") is not None else None,
+            "history": RentcastMarketStatistics200ResponseRentalDataHistory.from_dict(obj["history"]) if obj.get("history") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -20,19 +20,22 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from rentcast_client.models.rentcast_rental_listings_long_term200_response_inner_history20240918 import RentcastRentalListingsLongTerm200ResponseInnerHistory20240918
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastRentalListingsLongTerm200ResponseInnerHistory(BaseModel):
     """
     RentcastRentalListingsLongTerm200ResponseInnerHistory
     """ # noqa: E501
-    var_2024_09_18: Optional[RentcastRentcastRentalListingsLongTerm200ResponseInnerHistory20240918] = Field(default=None, alias="2024-09-18")
+    var_2024_09_18: Optional[RentcastRentalListingsLongTerm200ResponseInnerHistory20240918] = Field(default=None, alias="2024-09-18")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["2024-09-18"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -44,8 +47,7 @@ class RentcastRentalListingsLongTerm200ResponseInnerHistory(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -92,7 +94,7 @@ class RentcastRentalListingsLongTerm200ResponseInnerHistory(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "2024-09-18": RentcastRentcastRentalListingsLongTerm200ResponseInnerHistory20240918.from_dict(obj["2024-09-18"]) if obj.get("2024-09-18") is not None else None
+            "2024-09-18": RentcastRentalListingsLongTerm200ResponseInnerHistory20240918.from_dict(obj["2024-09-18"]) if obj.get("2024-09-18") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

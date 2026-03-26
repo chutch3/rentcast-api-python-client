@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_2024_08** | [**RentcastRentcastMarketStatistics200ResponseSaleDataHistory202408**](RentcastMarketStatistics200ResponseSaleDataHistory202408.md) |  | [optional] 
-**var_2024_09** | [**RentcastRentcastMarketStatistics200ResponseSaleDataHistory202409**](RentcastMarketStatistics200ResponseSaleDataHistory202409.md) |  | [optional] 
-**var_2024_10** | [**RentcastRentcastMarketStatistics200ResponseSaleDataHistory202410**](RentcastMarketStatistics200ResponseSaleDataHistory202410.md) |  | [optional] 
+**var_2025_06** | [**RentcastMarketStatistics200ResponseSaleDataHistory202506**](RentcastMarketStatistics200ResponseSaleDataHistory202506.md) |  | [optional] 
+**var_2025_07** | [**RentcastMarketStatistics200ResponseSaleDataHistory202507**](RentcastMarketStatistics200ResponseSaleDataHistory202507.md) |  | [optional] 
+**var_2025_08** | [**RentcastMarketStatistics200ResponseSaleDataHistory202508**](RentcastMarketStatistics200ResponseSaleDataHistory202508.md) |  | [optional] 
 
 ## Example
 

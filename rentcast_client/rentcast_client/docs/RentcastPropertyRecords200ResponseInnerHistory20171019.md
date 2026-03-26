@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **event** | **str** |  | [optional] 
-**var_date** | **str** |  | [optional] 
-**price** | **int** |  | [optional] [default to 0]
+**var_date** | **datetime** |  | [optional] 
+**price** | **float** |  | [optional] [default to ]
 
 ## Example
 

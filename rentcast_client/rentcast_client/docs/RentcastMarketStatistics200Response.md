@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] 
 **zip_code** | **str** |  | [optional] 
-**sale_data** | [**RentcastRentcastMarketStatistics200ResponseSaleData**](RentcastMarketStatistics200ResponseSaleData.md) |  | [optional] 
-**rental_data** | [**RentcastRentcastMarketStatistics200ResponseRentalData**](RentcastMarketStatistics200ResponseRentalData.md) |  | [optional] 
+**sale_data** | [**RentcastMarketStatistics200ResponseSaleData**](RentcastMarketStatistics200ResponseSaleData.md) |  | [optional] 
+**rental_data** | [**RentcastMarketStatistics200ResponseRentalData**](RentcastMarketStatistics200ResponseRentalData.md) |  | [optional] 
 
 ## Example
 

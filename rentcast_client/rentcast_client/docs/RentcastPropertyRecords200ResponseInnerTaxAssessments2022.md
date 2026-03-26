@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**year** | **int** |  | [optional] [default to 0]
-**value** | **int** |  | [optional] [default to 0]
-**land** | **int** |  | [optional] [default to 0]
-**improvements** | **int** |  | [optional] [default to 0]
+**year** | **float** |  | [optional] [default to ]
+**value** | **float** |  | [optional] [default to ]
+**land** | **float** |  | [optional] [default to ]
+**improvements** | **float** |  | [optional] [default to ]
 
 ## Example
 

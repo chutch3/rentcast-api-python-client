@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fee** | **int** |  | [optional] [default to 0]
+**fee** | **float** |  | [optional] [default to ]
 
 ## Example
 

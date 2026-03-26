@@ -18,10 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from rentcast_client.models.rentcast_property_records200_response_inner_features import RentcastPropertyRecords200ResponseInnerFeatures
+from rentcast_client.models.rentcast_property_records200_response_inner_history import RentcastPropertyRecords200ResponseInnerHistory
+from rentcast_client.models.rentcast_property_records200_response_inner_hoa import RentcastPropertyRecords200ResponseInnerHoa
+from rentcast_client.models.rentcast_property_records200_response_inner_owner import RentcastPropertyRecords200ResponseInnerOwner
+from rentcast_client.models.rentcast_property_records200_response_inner_property_taxes import RentcastPropertyRecords200ResponseInnerPropertyTaxes
+from rentcast_client.models.rentcast_property_records200_response_inner_tax_assessments import RentcastPropertyRecords200ResponseInnerTaxAssessments
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastPropertyRecords200ResponseInner(BaseModel):
     """
@@ -30,37 +38,40 @@ class RentcastPropertyRecords200ResponseInner(BaseModel):
     id: Optional[StrictStr] = None
     formatted_address: Optional[StrictStr] = Field(default=None, alias="formattedAddress")
     address_line1: Optional[StrictStr] = Field(default=None, alias="addressLine1")
-    address_line2: Optional[Any] = Field(default=None, alias="addressLine2")
+    address_line2: Optional[StrictStr] = Field(default=None, alias="addressLine2")
     city: Optional[StrictStr] = None
     state: Optional[StrictStr] = None
+    state_fips: Optional[StrictStr] = Field(default=None, alias="stateFips")
     zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
     county: Optional[StrictStr] = None
-    latitude: Optional[Union[StrictFloat, StrictInt]] = 0
-    longitude: Optional[Union[StrictFloat, StrictInt]] = 0
+    county_fips: Optional[StrictStr] = Field(default=None, alias="countyFips")
+    latitude: Optional[Union[StrictFloat, StrictInt]] = 
+    longitude: Optional[Union[StrictFloat, StrictInt]] = 
     property_type: Optional[StrictStr] = Field(default=None, alias="propertyType")
-    bedrooms: Optional[StrictInt] = 0
-    bathrooms: Optional[StrictInt] = 0
-    square_footage: Optional[StrictInt] = Field(default=0, alias="squareFootage")
-    lot_size: Optional[StrictInt] = Field(default=0, alias="lotSize")
-    year_built: Optional[StrictInt] = Field(default=0, alias="yearBuilt")
+    bedrooms: Optional[Union[StrictFloat, StrictInt]] = 
+    bathrooms: Optional[Union[StrictFloat, StrictInt]] = 
+    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="squareFootage")
+    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="lotSize")
+    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="yearBuilt")
     assessor_id: Optional[StrictStr] = Field(default=None, alias="assessorID")
     legal_description: Optional[StrictStr] = Field(default=None, alias="legalDescription")
     subdivision: Optional[StrictStr] = None
     zoning: Optional[StrictStr] = None
-    last_sale_date: Optional[StrictStr] = Field(default=None, alias="lastSaleDate")
-    last_sale_price: Optional[StrictInt] = Field(default=0, alias="lastSalePrice")
-    hoa: Optional[RentcastRentcastPropertyRecords200ResponseInnerHoa] = None
-    features: Optional[RentcastRentcastPropertyRecords200ResponseInnerFeatures] = None
-    tax_assessments: Optional[RentcastRentcastPropertyRecords200ResponseInnerTaxAssessments] = Field(default=None, alias="taxAssessments")
-    property_taxes: Optional[RentcastRentcastPropertyRecords200ResponseInnerPropertyTaxes] = Field(default=None, alias="propertyTaxes")
-    history: Optional[RentcastRentcastPropertyRecords200ResponseInnerHistory] = None
-    owner: Optional[RentcastRentcastPropertyRecords200ResponseInnerOwner] = None
-    owner_occupied: Optional[StrictBool] = Field(default=True, alias="ownerOccupied")
+    last_sale_date: Optional[datetime] = Field(default=None, alias="lastSaleDate")
+    last_sale_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="lastSalePrice")
+    hoa: Optional[RentcastPropertyRecords200ResponseInnerHoa] = None
+    features: Optional[RentcastPropertyRecords200ResponseInnerFeatures] = None
+    tax_assessments: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments] = Field(default=None, alias="taxAssessments")
+    property_taxes: Optional[RentcastPropertyRecords200ResponseInnerPropertyTaxes] = Field(default=None, alias="propertyTaxes")
+    history: Optional[RentcastPropertyRecords200ResponseInnerHistory] = None
+    owner: Optional[RentcastPropertyRecords200ResponseInnerOwner] = None
+    owner_occupied: Optional[StrictBool] = Field(default=False, alias="ownerOccupied")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "zipCode", "county", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "assessorID", "legalDescription", "subdivision", "zoning", "lastSaleDate", "lastSalePrice", "hoa", "features", "taxAssessments", "propertyTaxes", "history", "owner", "ownerOccupied"]
+    __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "stateFips", "zipCode", "county", "countyFips", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "assessorID", "legalDescription", "subdivision", "zoning", "lastSaleDate", "lastSalePrice", "hoa", "features", "taxAssessments", "propertyTaxes", "history", "owner", "ownerOccupied"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -72,8 +83,7 @@ class RentcastPropertyRecords200ResponseInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -123,11 +133,6 @@ class RentcastPropertyRecords200ResponseInner(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if address_line2 (nullable) is None
-        # and model_fields_set contains the field
-        if self.address_line2 is None and "address_line2" in self.model_fields_set:
-            _dict['addressLine2'] = None
-
         return _dict
 
     @classmethod
@@ -146,29 +151,31 @@ class RentcastPropertyRecords200ResponseInner(BaseModel):
             "addressLine2": obj.get("addressLine2"),
             "city": obj.get("city"),
             "state": obj.get("state"),
+            "stateFips": obj.get("stateFips"),
             "zipCode": obj.get("zipCode"),
             "county": obj.get("county"),
-            "latitude": obj.get("latitude") if obj.get("latitude") is not None else 0,
-            "longitude": obj.get("longitude") if obj.get("longitude") is not None else 0,
+            "countyFips": obj.get("countyFips"),
+            "latitude": obj.get("latitude") if obj.get("latitude") is not None else ,
+            "longitude": obj.get("longitude") if obj.get("longitude") is not None else ,
             "propertyType": obj.get("propertyType"),
-            "bedrooms": obj.get("bedrooms") if obj.get("bedrooms") is not None else 0,
-            "bathrooms": obj.get("bathrooms") if obj.get("bathrooms") is not None else 0,
-            "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else 0,
-            "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else 0,
-            "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else 0,
+            "bedrooms": obj.get("bedrooms") if obj.get("bedrooms") is not None else ,
+            "bathrooms": obj.get("bathrooms") if obj.get("bathrooms") is not None else ,
+            "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else ,
+            "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else ,
+            "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else ,
             "assessorID": obj.get("assessorID"),
             "legalDescription": obj.get("legalDescription"),
             "subdivision": obj.get("subdivision"),
             "zoning": obj.get("zoning"),
             "lastSaleDate": obj.get("lastSaleDate"),
-            "lastSalePrice": obj.get("lastSalePrice") if obj.get("lastSalePrice") is not None else 0,
-            "hoa": RentcastRentcastPropertyRecords200ResponseInnerHoa.from_dict(obj["hoa"]) if obj.get("hoa") is not None else None,
-            "features": RentcastRentcastPropertyRecords200ResponseInnerFeatures.from_dict(obj["features"]) if obj.get("features") is not None else None,
-            "taxAssessments": RentcastRentcastPropertyRecords200ResponseInnerTaxAssessments.from_dict(obj["taxAssessments"]) if obj.get("taxAssessments") is not None else None,
-            "propertyTaxes": RentcastRentcastPropertyRecords200ResponseInnerPropertyTaxes.from_dict(obj["propertyTaxes"]) if obj.get("propertyTaxes") is not None else None,
-            "history": RentcastRentcastPropertyRecords200ResponseInnerHistory.from_dict(obj["history"]) if obj.get("history") is not None else None,
-            "owner": RentcastRentcastPropertyRecords200ResponseInnerOwner.from_dict(obj["owner"]) if obj.get("owner") is not None else None,
-            "ownerOccupied": obj.get("ownerOccupied") if obj.get("ownerOccupied") is not None else True
+            "lastSalePrice": obj.get("lastSalePrice") if obj.get("lastSalePrice") is not None else ,
+            "hoa": RentcastPropertyRecords200ResponseInnerHoa.from_dict(obj["hoa"]) if obj.get("hoa") is not None else None,
+            "features": RentcastPropertyRecords200ResponseInnerFeatures.from_dict(obj["features"]) if obj.get("features") is not None else None,
+            "taxAssessments": RentcastPropertyRecords200ResponseInnerTaxAssessments.from_dict(obj["taxAssessments"]) if obj.get("taxAssessments") is not None else None,
+            "propertyTaxes": RentcastPropertyRecords200ResponseInnerPropertyTaxes.from_dict(obj["propertyTaxes"]) if obj.get("propertyTaxes") is not None else None,
+            "history": RentcastPropertyRecords200ResponseInnerHistory.from_dict(obj["history"]) if obj.get("history") is not None else None,
+            "owner": RentcastPropertyRecords200ResponseInnerOwner.from_dict(obj["owner"]) if obj.get("owner") is not None else None,
+            "ownerOccupied": obj.get("ownerOccupied") if obj.get("ownerOccupied") is not None else False
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

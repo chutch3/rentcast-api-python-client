@@ -20,8 +20,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from rentcast_client.models.rentcast_market_statistics200_response_rental_data import RentcastMarketStatistics200ResponseRentalData
+from rentcast_client.models.rentcast_market_statistics200_response_sale_data import RentcastMarketStatistics200ResponseSaleData
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastMarketStatistics200Response(BaseModel):
     """
@@ -29,13 +32,14 @@ class RentcastMarketStatistics200Response(BaseModel):
     """ # noqa: E501
     id: Optional[StrictStr] = None
     zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
-    sale_data: Optional[RentcastRentcastMarketStatistics200ResponseSaleData] = Field(default=None, alias="saleData")
-    rental_data: Optional[RentcastRentcastMarketStatistics200ResponseRentalData] = Field(default=None, alias="rentalData")
+    sale_data: Optional[RentcastMarketStatistics200ResponseSaleData] = Field(default=None, alias="saleData")
+    rental_data: Optional[RentcastMarketStatistics200ResponseRentalData] = Field(default=None, alias="rentalData")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "zipCode", "saleData", "rentalData"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +51,7 @@ class RentcastMarketStatistics200Response(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -100,8 +103,8 @@ class RentcastMarketStatistics200Response(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "zipCode": obj.get("zipCode"),
-            "saleData": RentcastRentcastMarketStatistics200ResponseSaleData.from_dict(obj["saleData"]) if obj.get("saleData") is not None else None,
-            "rentalData": RentcastRentcastMarketStatistics200ResponseRentalData.from_dict(obj["rentalData"]) if obj.get("rentalData") is not None else None
+            "saleData": RentcastMarketStatistics200ResponseSaleData.from_dict(obj["saleData"]) if obj.get("saleData") is not None else None,
+            "rentalData": RentcastMarketStatistics200ResponseRentalData.from_dict(obj["rentalData"]) if obj.get("rentalData") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

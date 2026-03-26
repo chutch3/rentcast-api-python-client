@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_2024_06_24** | [**RentcastRentcastSaleListings200ResponseInnerHistory20240624**](RentcastSaleListings200ResponseInnerHistory20240624.md) |  | [optional] 
+**var_2024_06_24** | [**RentcastSaleListings200ResponseInnerHistory20240624**](RentcastSaleListings200ResponseInnerHistory20240624.md) |  | [optional] 
 
 ## Example
 

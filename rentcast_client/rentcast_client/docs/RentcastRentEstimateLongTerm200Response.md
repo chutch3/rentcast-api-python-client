@@ -5,12 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rent** | **int** |  | [optional] [default to 0]
-**rent_range_low** | **int** |  | [optional] [default to 0]
-**rent_range_high** | **int** |  | [optional] [default to 0]
-**latitude** | **float** |  | [optional] [default to 0]
-**longitude** | **float** |  | [optional] [default to 0]
-**comparables** | [**List[RentcastRentcastRentEstimateLongTerm200ResponseComparablesInner]**](RentcastRentEstimateLongTerm200ResponseComparablesInner.md) |  | [optional] 
+**rent** | **float** |  | [optional] [default to ]
+**rent_range_low** | **float** |  | [optional] [default to ]
+**rent_range_high** | **float** |  | [optional] [default to ]
+**subject_property** | [**RentcastValueEstimate200ResponseSubjectProperty**](RentcastValueEstimate200ResponseSubjectProperty.md) |  | [optional] 
+**comparables** | [**List[RentcastRentEstimateLongTerm200ResponseComparablesInner]**](RentcastRentEstimateLongTerm200ResponseComparablesInner.md) |  | [optional] 
 
 ## Example
 

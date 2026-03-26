@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_2004_06_16** | [**RentcastRentcastPropertyRecords200ResponseInnerHistory20040616**](RentcastPropertyRecords200ResponseInnerHistory20040616.md) |  | [optional] 
-**var_2017_10_19** | [**RentcastRentcastPropertyRecords200ResponseInnerHistory20171019**](RentcastPropertyRecords200ResponseInnerHistory20171019.md) |  | [optional] 
+**var_2017_10_19** | [**RentcastPropertyRecords200ResponseInnerHistory20171019**](RentcastPropertyRecords200ResponseInnerHistory20171019.md) |  | [optional] 
+**var_2024_11_18** | [**RentcastPropertyRecords200ResponseInnerHistory20241118**](RentcastPropertyRecords200ResponseInnerHistory20241118.md) |  | [optional] 
 
 ## Example
 

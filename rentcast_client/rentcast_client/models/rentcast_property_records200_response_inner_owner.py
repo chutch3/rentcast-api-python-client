@@ -20,8 +20,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from rentcast_client.models.rentcast_property_records200_response_inner_owner_mailing_address import RentcastPropertyRecords200ResponseInnerOwnerMailingAddress
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastPropertyRecords200ResponseInnerOwner(BaseModel):
     """
@@ -29,12 +31,13 @@ class RentcastPropertyRecords200ResponseInnerOwner(BaseModel):
     """ # noqa: E501
     names: Optional[List[StrictStr]] = None
     type: Optional[StrictStr] = None
-    mailing_address: Optional[RentcastRentcastPropertyRecords200ResponseInnerOwnerMailingAddress] = Field(default=None, alias="mailingAddress")
+    mailing_address: Optional[RentcastPropertyRecords200ResponseInnerOwnerMailingAddress] = Field(default=None, alias="mailingAddress")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["names", "type", "mailingAddress"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,8 +49,7 @@ class RentcastPropertyRecords200ResponseInnerOwner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -96,7 +98,7 @@ class RentcastPropertyRecords200ResponseInnerOwner(BaseModel):
         _obj = cls.model_validate({
             "names": obj.get("names"),
             "type": obj.get("type"),
-            "mailingAddress": RentcastRentcastPropertyRecords200ResponseInnerOwnerMailingAddress.from_dict(obj["mailingAddress"]) if obj.get("mailingAddress") is not None else None
+            "mailingAddress": RentcastPropertyRecords200ResponseInnerOwnerMailingAddress.from_dict(obj["mailingAddress"]) if obj.get("mailingAddress") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -20,21 +20,26 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from rentcast_client.models.rentcast_market_statistics200_response_sale_data_history202506 import RentcastMarketStatistics200ResponseSaleDataHistory202506
+from rentcast_client.models.rentcast_market_statistics200_response_sale_data_history202507 import RentcastMarketStatistics200ResponseSaleDataHistory202507
+from rentcast_client.models.rentcast_market_statistics200_response_sale_data_history202508 import RentcastMarketStatistics200ResponseSaleDataHistory202508
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastMarketStatistics200ResponseSaleDataHistory(BaseModel):
     """
     RentcastMarketStatistics200ResponseSaleDataHistory
     """ # noqa: E501
-    var_2024_08: Optional[RentcastRentcastMarketStatistics200ResponseSaleDataHistory202408] = Field(default=None, alias="2024-08")
-    var_2024_09: Optional[RentcastRentcastMarketStatistics200ResponseSaleDataHistory202409] = Field(default=None, alias="2024-09")
-    var_2024_10: Optional[RentcastRentcastMarketStatistics200ResponseSaleDataHistory202410] = Field(default=None, alias="2024-10")
+    var_2025_06: Optional[RentcastMarketStatistics200ResponseSaleDataHistory202506] = Field(default=None, alias="2025-06")
+    var_2025_07: Optional[RentcastMarketStatistics200ResponseSaleDataHistory202507] = Field(default=None, alias="2025-07")
+    var_2025_08: Optional[RentcastMarketStatistics200ResponseSaleDataHistory202508] = Field(default=None, alias="2025-08")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["2024-08", "2024-09", "2024-10"]
+    __properties: ClassVar[List[str]] = ["2025-06", "2025-07", "2025-08"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,8 +51,7 @@ class RentcastMarketStatistics200ResponseSaleDataHistory(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -74,15 +78,15 @@ class RentcastMarketStatistics200ResponseSaleDataHistory(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of var_2024_08
-        if self.var_2024_08:
-            _dict['2024-08'] = self.var_2024_08.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_2024_09
-        if self.var_2024_09:
-            _dict['2024-09'] = self.var_2024_09.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_2024_10
-        if self.var_2024_10:
-            _dict['2024-10'] = self.var_2024_10.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_2025_06
+        if self.var_2025_06:
+            _dict['2025-06'] = self.var_2025_06.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_2025_07
+        if self.var_2025_07:
+            _dict['2025-07'] = self.var_2025_07.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_2025_08
+        if self.var_2025_08:
+            _dict['2025-08'] = self.var_2025_08.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -100,9 +104,9 @@ class RentcastMarketStatistics200ResponseSaleDataHistory(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "2024-08": RentcastRentcastMarketStatistics200ResponseSaleDataHistory202408.from_dict(obj["2024-08"]) if obj.get("2024-08") is not None else None,
-            "2024-09": RentcastRentcastMarketStatistics200ResponseSaleDataHistory202409.from_dict(obj["2024-09"]) if obj.get("2024-09") is not None else None,
-            "2024-10": RentcastRentcastMarketStatistics200ResponseSaleDataHistory202410.from_dict(obj["2024-10"]) if obj.get("2024-10") is not None else None
+            "2025-06": RentcastMarketStatistics200ResponseSaleDataHistory202506.from_dict(obj["2025-06"]) if obj.get("2025-06") is not None else None,
+            "2025-07": RentcastMarketStatistics200ResponseSaleDataHistory202507.from_dict(obj["2025-07"]) if obj.get("2025-07") is not None else None,
+            "2025-08": RentcastMarketStatistics200ResponseSaleDataHistory202508.from_dict(obj["2025-08"]) if obj.get("2025-08") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

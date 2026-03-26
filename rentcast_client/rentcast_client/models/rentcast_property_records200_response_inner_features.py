@@ -18,39 +18,41 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastPropertyRecords200ResponseInnerFeatures(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerFeatures
     """ # noqa: E501
     architecture_type: Optional[StrictStr] = Field(default=None, alias="architectureType")
-    cooling: Optional[StrictBool] = True
+    cooling: Optional[StrictBool] = False
     cooling_type: Optional[StrictStr] = Field(default=None, alias="coolingType")
     exterior_type: Optional[StrictStr] = Field(default=None, alias="exteriorType")
-    fireplace: Optional[StrictBool] = True
+    fireplace: Optional[StrictBool] = False
     fireplace_type: Optional[StrictStr] = Field(default=None, alias="fireplaceType")
-    floor_count: Optional[StrictInt] = Field(default=0, alias="floorCount")
+    floor_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="floorCount")
     foundation_type: Optional[StrictStr] = Field(default=None, alias="foundationType")
-    garage: Optional[StrictBool] = True
-    garage_spaces: Optional[StrictInt] = Field(default=0, alias="garageSpaces")
+    garage: Optional[StrictBool] = False
+    garage_spaces: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="garageSpaces")
     garage_type: Optional[StrictStr] = Field(default=None, alias="garageType")
-    heating: Optional[StrictBool] = True
+    heating: Optional[StrictBool] = False
     heating_type: Optional[StrictStr] = Field(default=None, alias="heatingType")
-    pool: Optional[StrictBool] = True
+    pool: Optional[StrictBool] = False
     pool_type: Optional[StrictStr] = Field(default=None, alias="poolType")
     roof_type: Optional[StrictStr] = Field(default=None, alias="roofType")
-    room_count: Optional[StrictInt] = Field(default=0, alias="roomCount")
-    unit_count: Optional[StrictInt] = Field(default=0, alias="unitCount")
+    room_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="roomCount")
+    unit_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="unitCount")
     view_type: Optional[StrictStr] = Field(default=None, alias="viewType")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["architectureType", "cooling", "coolingType", "exteriorType", "fireplace", "fireplaceType", "floorCount", "foundationType", "garage", "garageSpaces", "garageType", "heating", "heatingType", "pool", "poolType", "roofType", "roomCount", "unitCount", "viewType"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -62,8 +64,7 @@ class RentcastPropertyRecords200ResponseInnerFeatures(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -108,23 +109,23 @@ class RentcastPropertyRecords200ResponseInnerFeatures(BaseModel):
 
         _obj = cls.model_validate({
             "architectureType": obj.get("architectureType"),
-            "cooling": obj.get("cooling") if obj.get("cooling") is not None else True,
+            "cooling": obj.get("cooling") if obj.get("cooling") is not None else False,
             "coolingType": obj.get("coolingType"),
             "exteriorType": obj.get("exteriorType"),
-            "fireplace": obj.get("fireplace") if obj.get("fireplace") is not None else True,
+            "fireplace": obj.get("fireplace") if obj.get("fireplace") is not None else False,
             "fireplaceType": obj.get("fireplaceType"),
-            "floorCount": obj.get("floorCount") if obj.get("floorCount") is not None else 0,
+            "floorCount": obj.get("floorCount") if obj.get("floorCount") is not None else ,
             "foundationType": obj.get("foundationType"),
-            "garage": obj.get("garage") if obj.get("garage") is not None else True,
-            "garageSpaces": obj.get("garageSpaces") if obj.get("garageSpaces") is not None else 0,
+            "garage": obj.get("garage") if obj.get("garage") is not None else False,
+            "garageSpaces": obj.get("garageSpaces") if obj.get("garageSpaces") is not None else ,
             "garageType": obj.get("garageType"),
-            "heating": obj.get("heating") if obj.get("heating") is not None else True,
+            "heating": obj.get("heating") if obj.get("heating") is not None else False,
             "heatingType": obj.get("heatingType"),
-            "pool": obj.get("pool") if obj.get("pool") is not None else True,
+            "pool": obj.get("pool") if obj.get("pool") is not None else False,
             "poolType": obj.get("poolType"),
             "roofType": obj.get("roofType"),
-            "roomCount": obj.get("roomCount") if obj.get("roomCount") is not None else 0,
-            "unitCount": obj.get("unitCount") if obj.get("unitCount") is not None else 0,
+            "roomCount": obj.get("roomCount") if obj.get("roomCount") is not None else ,
+            "unitCount": obj.get("unitCount") if obj.get("unitCount") is not None else ,
             "viewType": obj.get("viewType")
         })
         # store additional fields in additional_properties

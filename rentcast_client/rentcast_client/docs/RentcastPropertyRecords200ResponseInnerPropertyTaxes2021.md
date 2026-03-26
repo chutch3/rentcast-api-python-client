@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**year** | **int** |  | [optional] [default to 0]
-**total** | **int** |  | [optional] [default to 0]
+**year** | **float** |  | [optional] [default to ]
+**total** | **float** |  | [optional] [default to ]
 
 ## Example
 

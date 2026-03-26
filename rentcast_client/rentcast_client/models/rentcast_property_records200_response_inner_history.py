@@ -20,20 +20,24 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from rentcast_client.models.rentcast_property_records200_response_inner_history20171019 import RentcastPropertyRecords200ResponseInnerHistory20171019
+from rentcast_client.models.rentcast_property_records200_response_inner_history20241118 import RentcastPropertyRecords200ResponseInnerHistory20241118
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastPropertyRecords200ResponseInnerHistory(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerHistory
     """ # noqa: E501
-    var_2004_06_16: Optional[RentcastRentcastPropertyRecords200ResponseInnerHistory20040616] = Field(default=None, alias="2004-06-16")
-    var_2017_10_19: Optional[RentcastRentcastPropertyRecords200ResponseInnerHistory20171019] = Field(default=None, alias="2017-10-19")
+    var_2017_10_19: Optional[RentcastPropertyRecords200ResponseInnerHistory20171019] = Field(default=None, alias="2017-10-19")
+    var_2024_11_18: Optional[RentcastPropertyRecords200ResponseInnerHistory20241118] = Field(default=None, alias="2024-11-18")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["2004-06-16", "2017-10-19"]
+    __properties: ClassVar[List[str]] = ["2017-10-19", "2024-11-18"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -45,8 +49,7 @@ class RentcastPropertyRecords200ResponseInnerHistory(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -73,12 +76,12 @@ class RentcastPropertyRecords200ResponseInnerHistory(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of var_2004_06_16
-        if self.var_2004_06_16:
-            _dict['2004-06-16'] = self.var_2004_06_16.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_2017_10_19
         if self.var_2017_10_19:
             _dict['2017-10-19'] = self.var_2017_10_19.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_2024_11_18
+        if self.var_2024_11_18:
+            _dict['2024-11-18'] = self.var_2024_11_18.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -96,8 +99,8 @@ class RentcastPropertyRecords200ResponseInnerHistory(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "2004-06-16": RentcastRentcastPropertyRecords200ResponseInnerHistory20040616.from_dict(obj["2004-06-16"]) if obj.get("2004-06-16") is not None else None,
-            "2017-10-19": RentcastRentcastPropertyRecords200ResponseInnerHistory20171019.from_dict(obj["2017-10-19"]) if obj.get("2017-10-19") is not None else None
+            "2017-10-19": RentcastPropertyRecords200ResponseInnerHistory20171019.from_dict(obj["2017-10-19"]) if obj.get("2017-10-19") is not None else None,
+            "2024-11-18": RentcastPropertyRecords200ResponseInnerHistory20241118.from_dict(obj["2024-11-18"]) if obj.get("2024-11-18") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

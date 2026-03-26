@@ -20,24 +20,27 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from rentcast_client.models.rentcast_value_estimate200_response_comparables_inner import RentcastValueEstimate200ResponseComparablesInner
+from rentcast_client.models.rentcast_value_estimate200_response_subject_property import RentcastValueEstimate200ResponseSubjectProperty
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RentcastValueEstimate200Response(BaseModel):
     """
     RentcastValueEstimate200Response
     """ # noqa: E501
-    price: Optional[StrictInt] = 0
-    price_range_low: Optional[StrictInt] = Field(default=0, alias="priceRangeLow")
-    price_range_high: Optional[StrictInt] = Field(default=0, alias="priceRangeHigh")
-    latitude: Optional[Union[StrictFloat, StrictInt]] = 0
-    longitude: Optional[Union[StrictFloat, StrictInt]] = 0
-    comparables: Optional[List[RentcastRentcastValueEstimate200ResponseComparablesInner]] = None
+    price: Optional[Union[StrictFloat, StrictInt]] = 
+    price_range_low: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="priceRangeLow")
+    price_range_high: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="priceRangeHigh")
+    subject_property: Optional[RentcastValueEstimate200ResponseSubjectProperty] = Field(default=None, alias="subjectProperty")
+    comparables: Optional[List[RentcastValueEstimate200ResponseComparablesInner]] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["price", "priceRangeLow", "priceRangeHigh", "latitude", "longitude", "comparables"]
+    __properties: ClassVar[List[str]] = ["price", "priceRangeLow", "priceRangeHigh", "subjectProperty", "comparables"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -49,8 +52,7 @@ class RentcastValueEstimate200Response(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -77,6 +79,9 @@ class RentcastValueEstimate200Response(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of subject_property
+        if self.subject_property:
+            _dict['subjectProperty'] = self.subject_property.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in comparables (list)
         _items = []
         if self.comparables:
@@ -101,12 +106,11 @@ class RentcastValueEstimate200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "price": obj.get("price") if obj.get("price") is not None else 0,
-            "priceRangeLow": obj.get("priceRangeLow") if obj.get("priceRangeLow") is not None else 0,
-            "priceRangeHigh": obj.get("priceRangeHigh") if obj.get("priceRangeHigh") is not None else 0,
-            "latitude": obj.get("latitude") if obj.get("latitude") is not None else 0,
-            "longitude": obj.get("longitude") if obj.get("longitude") is not None else 0,
-            "comparables": [RentcastRentcastValueEstimate200ResponseComparablesInner.from_dict(_item) for _item in obj["comparables"]] if obj.get("comparables") is not None else None
+            "price": obj.get("price") if obj.get("price") is not None else ,
+            "priceRangeLow": obj.get("priceRangeLow") if obj.get("priceRangeLow") is not None else ,
+            "priceRangeHigh": obj.get("priceRangeHigh") if obj.get("priceRangeHigh") is not None else ,
+            "subjectProperty": RentcastValueEstimate200ResponseSubjectProperty.from_dict(obj["subjectProperty"]) if obj.get("subjectProperty") is not None else None,
+            "comparables": [RentcastValueEstimate200ResponseComparablesInner.from_dict(_item) for _item in obj["comparables"]] if obj.get("comparables") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

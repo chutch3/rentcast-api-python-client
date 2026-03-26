@@ -5,12 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**price** | **int** |  | [optional] [default to 0]
-**price_range_low** | **int** |  | [optional] [default to 0]
-**price_range_high** | **int** |  | [optional] [default to 0]
-**latitude** | **float** |  | [optional] [default to 0]
-**longitude** | **float** |  | [optional] [default to 0]
-**comparables** | [**List[RentcastRentcastValueEstimate200ResponseComparablesInner]**](RentcastValueEstimate200ResponseComparablesInner.md) |  | [optional] 
+**price** | **float** |  | [optional] [default to ]
+**price_range_low** | **float** |  | [optional] [default to ]
+**price_range_high** | **float** |  | [optional] [default to ]
+**subject_property** | [**RentcastValueEstimate200ResponseSubjectProperty**](RentcastValueEstimate200ResponseSubjectProperty.md) |  | [optional] 
+**comparables** | [**List[RentcastValueEstimate200ResponseComparablesInner]**](RentcastValueEstimate200ResponseComparablesInner.md) |  | [optional] 
 
 ## Example
 

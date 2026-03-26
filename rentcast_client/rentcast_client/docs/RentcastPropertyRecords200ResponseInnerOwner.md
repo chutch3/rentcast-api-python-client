@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **names** | **List[str]** |  | [optional] 
 **type** | **str** |  | [optional] 
-**mailing_address** | [**RentcastRentcastPropertyRecords200ResponseInnerOwnerMailingAddress**](RentcastPropertyRecords200ResponseInnerOwnerMailingAddress.md) |  | [optional] 
+**mailing_address** | [**RentcastPropertyRecords200ResponseInnerOwnerMailingAddress**](RentcastPropertyRecords200ResponseInnerOwnerMailingAddress.md) |  | [optional] 
 
 ## Example
 
