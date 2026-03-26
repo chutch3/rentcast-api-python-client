@@ -1,0 +1,41 @@
+# CHANGELOG
+
+
+
+## v1.0.0 (2026-03-26)
+
+### Breaking
+
+* feat!: fix package build, add CI/CD pipeline, and update client to latest Rentcast API spec ([`60ff581`](https://github.com/chutch3/rentcast-api-python-client/commit/60ff5817dfc5635138c5a7e08c57dfef6ff308f7))
+
+### Ci
+
+* ci: fix missing setuptools ([`de2a745`](https://github.com/chutch3/rentcast-api-python-client/commit/de2a745bcbf21cbcfee4878791025038ba2330d4))
+
+* ci: fix broken package name ([`b118364`](https://github.com/chutch3/rentcast-api-python-client/commit/b118364531a27e35bffba8fe9db3b85cfb7f317f))
+
+* ci: restructured cicd to fix the artifact missing issue ([`9481bf5`](https://github.com/chutch3/rentcast-api-python-client/commit/9481bf5e8ced4c77ecbad67e4867eb05074e647f))
+
+* ci: renamed cicd step ([`870c3cb`](https://github.com/chutch3/rentcast-api-python-client/commit/870c3cb3d908e6e1c9b08630ea8683fd90657d24))
+
+### Feature
+
+* feat: bumped package version ([`a4e8b0b`](https://github.com/chutch3/rentcast-api-python-client/commit/a4e8b0b5214a902f1e481929f2c2d0a92d31e027))
+
+* feat: bumped package version ([`c115553`](https://github.com/chutch3/rentcast-api-python-client/commit/c115553dcc6218f2a7bf1cd1d23a32e135a0cce8))
+
+* feat: added package version ([`f137cea`](https://github.com/chutch3/rentcast-api-python-client/commit/f137cea757a1d654d35de426855f6551c0644d03))
+
+* feat: generator now uses asyncio ([`19a0ef4`](https://github.com/chutch3/rentcast-api-python-client/commit/19a0ef4f614b62da87bc9927103d7bc0bbab1ccd))
+
+* feat: initial commit ([`a7e2c37`](https://github.com/chutch3/rentcast-api-python-client/commit/a7e2c3752a9b178dcd1ce86b24b03b47ab0024c0))
+
+### Fix
+
+* fix: remove build_command from semantic-release config, poetry not available in action container ([`3b756ad`](https://github.com/chutch3/rentcast-api-python-client/commit/3b756ad1428e042d36af01fc2da9c772c1c89d74))
+
+* fix: library configuration and bumped version ([`205e5d4`](https://github.com/chutch3/rentcast-api-python-client/commit/205e5d498092fcbb214934af265da83a658b2291))
+
+* fix: removed the change detection and setup deploy on push ([`19777b9`](https://github.com/chutch3/rentcast-api-python-client/commit/19777b96d598631cb943fb6b2294385da8e3e96d))
+
+* fix: node version bump ([`5e3646d`](https://github.com/chutch3/rentcast-api-python-client/commit/5e3646d49eede2c8ac193bf55702f0d9b8b1e8f1))
