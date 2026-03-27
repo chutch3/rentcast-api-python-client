@@ -74,10 +74,11 @@ jobs:
       - name: Python Semantic Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PYPI_TOKEN: ${{ secrets.PYPI_PASSWORD }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin git@github.com:chutch3/rentcast-api-python-client.git
-          semantic-release version
-          semantic-release publish
+          if semantic-release version; then
+            semantic-release publish
+            POETRY_PYPI_TOKEN_PYPI=${{ secrets.PYPI_PASSWORD }} poetry publish
+          fi

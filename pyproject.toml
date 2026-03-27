@@ -28,7 +28,6 @@ branch = "main"
 commit_message = "chore(release): v{version} [skip ci]"
 tag_format = "v{version}"
 build_command = "poetry build"
-upload_to_pypi = true
 upload_to_release = true
 
 [tool.semantic_release.remote]
