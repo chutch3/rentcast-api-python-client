@@ -63,11 +63,18 @@ jobs:
           fi
 
       # Step 2: Release and Publish
+      - name: Install Semantic Release
+        run: pip install python-semantic-release==9.8.0
+
       - name: Python Semantic Release
         id: release
-        uses: python-semantic-release/python-semantic-release@v9.8.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          semantic-release version
+          echo "released=$(git describe --exact-match HEAD 2>/dev/null && echo true || echo false)" >> $GITHUB_OUTPUT
 
       - name: Publish to PyPI
         if: steps.release.outputs.released == 'true'
