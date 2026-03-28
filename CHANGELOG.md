@@ -2,6 +2,47 @@
 
 
 
+## v2.1.0 (2026-03-28)
+
+### Chore
+
+* chore: untrack pycache files ([`1a0978d`](https://github.com/chutch3/rentcast-api-python-client/commit/1a0978df5dcbcfc2b182373fdfbc46dfe7157b42))
+
+* chore: remove pycache from tracking and update gitignore ([`ef60ac2`](https://github.com/chutch3/rentcast-api-python-client/commit/ef60ac2b6b0cca7057c7df96c13524b21203b36b))
+
+* chore(release): v2.1.0 [skip ci] ([`9193724`](https://github.com/chutch3/rentcast-api-python-client/commit/9193724a57bd61b9bba778757e8a07d8e5c9cb7f))
+
+* chore(release): v2.1.0 [skip ci] ([`ce96b81`](https://github.com/chutch3/rentcast-api-python-client/commit/ce96b814b6b9553a2af287515a67e0564060d85a))
+
+### Ci
+
+* ci: use poetry publish with exit code check for conditional pypi upload ([`1f22b4a`](https://github.com/chutch3/rentcast-api-python-client/commit/1f22b4a30cafc3dae124401167cde064cec98c78))
+
+* ci: let semantic-release handle build and publish to pypi ([`7c00781`](https://github.com/chutch3/rentcast-api-python-client/commit/7c00781eb4f20686d1c93a225c2e2be7016b2f9d))
+
+* ci: use ssh-agent and ignore_token_for_push to bypass branch protection ([`ff4201f`](https://github.com/chutch3/rentcast-api-python-client/commit/ff4201fa4c105b8ff62930da6d2a567fa731ed35))
+
+* ci: run semantic-release as CLI to use SSH for protected branch push ([`303272d`](https://github.com/chutch3/rentcast-api-python-client/commit/303272d2b57b0bdb1d96bc93b0fda00d040e954f))
+
+* ci: use deploy key for branch protection bypass ([`e6c2608`](https://github.com/chutch3/rentcast-api-python-client/commit/e6c26088ad9cf08a7a87c99f68102bc1130ca410))
+
+### Feature
+
+* feat: fix invalid generated models, add missing runtime deps, and harden release pipeline ([`3a833da`](https://github.com/chutch3/rentcast-api-python-client/commit/3a833dab4e39b6c378e402804b20f8c507971516))
+
+* feat: update client to latest Rentcast API spec ([`41decad`](https://github.com/chutch3/rentcast-api-python-client/commit/41decad8505b9ae412506c393d498dcd2f0c1ebb))
+
+### Unknown
+
+* Revert &#34;chore(release): v2.1.0 [skip ci]&#34;
+
+This reverts commit 9193724a57bd61b9bba778757e8a07d8e5c9cb7f. ([`ba21c8a`](https://github.com/chutch3/rentcast-api-python-client/commit/ba21c8aef26f8ee187118a87c280ed7a76aa307c))
+
+* Revert &#34;chore(release): v2.1.0 [skip ci]&#34;
+
+This reverts commit ce96b814b6b9553a2af287515a67e0564060d85a. ([`708de66`](https://github.com/chutch3/rentcast-api-python-client/commit/708de66f72b2cc4a02a9cb8baf6b3c19812ebdae))
+
+
 ## v2.0.0 (2026-03-26)
 
 ### Breaking
@@ -9,6 +50,8 @@
 * feat!: fix package build, add CI/CD pipeline, and update client to latest Rentcast API spec ([`60ff581`](https://github.com/chutch3/rentcast-api-python-client/commit/60ff5817dfc5635138c5a7e08c57dfef6ff308f7))
 
 ### Chore
+
+* chore(release): v2.0.0 [skip ci] ([`daac10c`](https://github.com/chutch3/rentcast-api-python-client/commit/daac10ccae9ab7df016ed1c03ddd01fe6e5f9b20))
 
 * chore(release): v1.0.0 [skip ci] ([`35a4ffd`](https://github.com/chutch3/rentcast-api-python-client/commit/35a4ffdecfb2f98bb8f2ea2a7e2b8237ed8d6cf4))
 
