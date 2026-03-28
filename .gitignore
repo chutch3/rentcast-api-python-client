@@ -4,3 +4,6 @@
 .env.*
 .python-version
 dist/
+__pycache__/
+*.pyc
+.venv/
