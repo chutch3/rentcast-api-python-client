@@ -28,8 +28,8 @@ class RentcastPropertyRecords200ResponseInnerPropertyTaxes2024(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerPropertyTaxes2024
     """ # noqa: E501
-    year: Optional[Union[StrictFloat, StrictInt]] = 
-    total: Optional[Union[StrictFloat, StrictInt]] = 
+    year: Optional[Union[StrictFloat, StrictInt]] = None
+    total: Optional[Union[StrictFloat, StrictInt]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["year", "total"]
 
@@ -91,8 +91,8 @@ class RentcastPropertyRecords200ResponseInnerPropertyTaxes2024(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "year": obj.get("year") if obj.get("year") is not None else ,
-            "total": obj.get("total") if obj.get("total") is not None else 
+            "year": obj.get("year") if obj.get("year") is not None else None,
+            "total": obj.get("total") if obj.get("total") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

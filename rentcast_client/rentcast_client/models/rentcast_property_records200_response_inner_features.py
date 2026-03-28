@@ -34,18 +34,18 @@ class RentcastPropertyRecords200ResponseInnerFeatures(BaseModel):
     exterior_type: Optional[StrictStr] = Field(default=None, alias="exteriorType")
     fireplace: Optional[StrictBool] = False
     fireplace_type: Optional[StrictStr] = Field(default=None, alias="fireplaceType")
-    floor_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="floorCount")
+    floor_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="floorCount")
     foundation_type: Optional[StrictStr] = Field(default=None, alias="foundationType")
     garage: Optional[StrictBool] = False
-    garage_spaces: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="garageSpaces")
+    garage_spaces: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="garageSpaces")
     garage_type: Optional[StrictStr] = Field(default=None, alias="garageType")
     heating: Optional[StrictBool] = False
     heating_type: Optional[StrictStr] = Field(default=None, alias="heatingType")
     pool: Optional[StrictBool] = False
     pool_type: Optional[StrictStr] = Field(default=None, alias="poolType")
     roof_type: Optional[StrictStr] = Field(default=None, alias="roofType")
-    room_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="roomCount")
-    unit_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="unitCount")
+    room_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="roomCount")
+    unit_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="unitCount")
     view_type: Optional[StrictStr] = Field(default=None, alias="viewType")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["architectureType", "cooling", "coolingType", "exteriorType", "fireplace", "fireplaceType", "floorCount", "foundationType", "garage", "garageSpaces", "garageType", "heating", "heatingType", "pool", "poolType", "roofType", "roomCount", "unitCount", "viewType"]
@@ -114,18 +114,18 @@ class RentcastPropertyRecords200ResponseInnerFeatures(BaseModel):
             "exteriorType": obj.get("exteriorType"),
             "fireplace": obj.get("fireplace") if obj.get("fireplace") is not None else False,
             "fireplaceType": obj.get("fireplaceType"),
-            "floorCount": obj.get("floorCount") if obj.get("floorCount") is not None else ,
+            "floorCount": obj.get("floorCount") if obj.get("floorCount") is not None else None,
             "foundationType": obj.get("foundationType"),
             "garage": obj.get("garage") if obj.get("garage") is not None else False,
-            "garageSpaces": obj.get("garageSpaces") if obj.get("garageSpaces") is not None else ,
+            "garageSpaces": obj.get("garageSpaces") if obj.get("garageSpaces") is not None else None,
             "garageType": obj.get("garageType"),
             "heating": obj.get("heating") if obj.get("heating") is not None else False,
             "heatingType": obj.get("heatingType"),
             "pool": obj.get("pool") if obj.get("pool") is not None else False,
             "poolType": obj.get("poolType"),
             "roofType": obj.get("roofType"),
-            "roomCount": obj.get("roomCount") if obj.get("roomCount") is not None else ,
-            "unitCount": obj.get("unitCount") if obj.get("unitCount") is not None else ,
+            "roomCount": obj.get("roomCount") if obj.get("roomCount") is not None else None,
+            "unitCount": obj.get("unitCount") if obj.get("unitCount") is not None else None,
             "viewType": obj.get("viewType")
         })
         # store additional fields in additional_properties

@@ -32,24 +32,24 @@ class RentcastMarketStatistics200ResponseSaleDataHistory202506(BaseModel):
     RentcastMarketStatistics200ResponseSaleDataHistory202506
     """ # noqa: E501
     var_date: Optional[datetime] = Field(default=None, alias="date")
-    average_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="averagePrice")
-    median_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="medianPrice")
-    min_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="minPrice")
-    max_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="maxPrice")
-    average_price_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="averagePricePerSquareFoot")
-    median_price_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="medianPricePerSquareFoot")
-    min_price_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="minPricePerSquareFoot")
-    max_price_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="maxPricePerSquareFoot")
-    average_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="averageSquareFootage")
-    median_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="medianSquareFootage")
-    min_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="minSquareFootage")
-    max_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="maxSquareFootage")
-    average_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="averageDaysOnMarket")
-    median_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="medianDaysOnMarket")
-    min_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="minDaysOnMarket")
-    max_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="maxDaysOnMarket")
-    new_listings: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="newListings")
-    total_listings: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="totalListings")
+    average_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="averagePrice")
+    median_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="medianPrice")
+    min_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="minPrice")
+    max_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="maxPrice")
+    average_price_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="averagePricePerSquareFoot")
+    median_price_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="medianPricePerSquareFoot")
+    min_price_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="minPricePerSquareFoot")
+    max_price_per_square_foot: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="maxPricePerSquareFoot")
+    average_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="averageSquareFootage")
+    median_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="medianSquareFootage")
+    min_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="minSquareFootage")
+    max_square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="maxSquareFootage")
+    average_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="averageDaysOnMarket")
+    median_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="medianDaysOnMarket")
+    min_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="minDaysOnMarket")
+    max_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="maxDaysOnMarket")
+    new_listings: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="newListings")
+    total_listings: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalListings")
     data_by_property_type: Optional[List[RentcastMarketStatistics200ResponseSaleDataHistory202506DataByPropertyTypeInner]] = Field(default=None, alias="dataByPropertyType")
     data_by_bedrooms: Optional[List[RentcastMarketStatistics200ResponseSaleDataHistory202506DataByBedroomsInner]] = Field(default=None, alias="dataByBedrooms")
     additional_properties: Dict[str, Any] = {}
@@ -128,24 +128,24 @@ class RentcastMarketStatistics200ResponseSaleDataHistory202506(BaseModel):
 
         _obj = cls.model_validate({
             "date": obj.get("date"),
-            "averagePrice": obj.get("averagePrice") if obj.get("averagePrice") is not None else ,
-            "medianPrice": obj.get("medianPrice") if obj.get("medianPrice") is not None else ,
-            "minPrice": obj.get("minPrice") if obj.get("minPrice") is not None else ,
-            "maxPrice": obj.get("maxPrice") if obj.get("maxPrice") is not None else ,
-            "averagePricePerSquareFoot": obj.get("averagePricePerSquareFoot") if obj.get("averagePricePerSquareFoot") is not None else ,
-            "medianPricePerSquareFoot": obj.get("medianPricePerSquareFoot") if obj.get("medianPricePerSquareFoot") is not None else ,
-            "minPricePerSquareFoot": obj.get("minPricePerSquareFoot") if obj.get("minPricePerSquareFoot") is not None else ,
-            "maxPricePerSquareFoot": obj.get("maxPricePerSquareFoot") if obj.get("maxPricePerSquareFoot") is not None else ,
-            "averageSquareFootage": obj.get("averageSquareFootage") if obj.get("averageSquareFootage") is not None else ,
-            "medianSquareFootage": obj.get("medianSquareFootage") if obj.get("medianSquareFootage") is not None else ,
-            "minSquareFootage": obj.get("minSquareFootage") if obj.get("minSquareFootage") is not None else ,
-            "maxSquareFootage": obj.get("maxSquareFootage") if obj.get("maxSquareFootage") is not None else ,
-            "averageDaysOnMarket": obj.get("averageDaysOnMarket") if obj.get("averageDaysOnMarket") is not None else ,
-            "medianDaysOnMarket": obj.get("medianDaysOnMarket") if obj.get("medianDaysOnMarket") is not None else ,
-            "minDaysOnMarket": obj.get("minDaysOnMarket") if obj.get("minDaysOnMarket") is not None else ,
-            "maxDaysOnMarket": obj.get("maxDaysOnMarket") if obj.get("maxDaysOnMarket") is not None else ,
-            "newListings": obj.get("newListings") if obj.get("newListings") is not None else ,
-            "totalListings": obj.get("totalListings") if obj.get("totalListings") is not None else ,
+            "averagePrice": obj.get("averagePrice") if obj.get("averagePrice") is not None else None,
+            "medianPrice": obj.get("medianPrice") if obj.get("medianPrice") is not None else None,
+            "minPrice": obj.get("minPrice") if obj.get("minPrice") is not None else None,
+            "maxPrice": obj.get("maxPrice") if obj.get("maxPrice") is not None else None,
+            "averagePricePerSquareFoot": obj.get("averagePricePerSquareFoot") if obj.get("averagePricePerSquareFoot") is not None else None,
+            "medianPricePerSquareFoot": obj.get("medianPricePerSquareFoot") if obj.get("medianPricePerSquareFoot") is not None else None,
+            "minPricePerSquareFoot": obj.get("minPricePerSquareFoot") if obj.get("minPricePerSquareFoot") is not None else None,
+            "maxPricePerSquareFoot": obj.get("maxPricePerSquareFoot") if obj.get("maxPricePerSquareFoot") is not None else None,
+            "averageSquareFootage": obj.get("averageSquareFootage") if obj.get("averageSquareFootage") is not None else None,
+            "medianSquareFootage": obj.get("medianSquareFootage") if obj.get("medianSquareFootage") is not None else None,
+            "minSquareFootage": obj.get("minSquareFootage") if obj.get("minSquareFootage") is not None else None,
+            "maxSquareFootage": obj.get("maxSquareFootage") if obj.get("maxSquareFootage") is not None else None,
+            "averageDaysOnMarket": obj.get("averageDaysOnMarket") if obj.get("averageDaysOnMarket") is not None else None,
+            "medianDaysOnMarket": obj.get("medianDaysOnMarket") if obj.get("medianDaysOnMarket") is not None else None,
+            "minDaysOnMarket": obj.get("minDaysOnMarket") if obj.get("minDaysOnMarket") is not None else None,
+            "maxDaysOnMarket": obj.get("maxDaysOnMarket") if obj.get("maxDaysOnMarket") is not None else None,
+            "newListings": obj.get("newListings") if obj.get("newListings") is not None else None,
+            "totalListings": obj.get("totalListings") if obj.get("totalListings") is not None else None,
             "dataByPropertyType": [RentcastMarketStatistics200ResponseSaleDataHistory202506DataByPropertyTypeInner.from_dict(_item) for _item in obj["dataByPropertyType"]] if obj.get("dataByPropertyType") is not None else None,
             "dataByBedrooms": [RentcastMarketStatistics200ResponseSaleDataHistory202506DataByBedroomsInner.from_dict(_item) for _item in obj["dataByBedrooms"]] if obj.get("dataByBedrooms") is not None else None
         })

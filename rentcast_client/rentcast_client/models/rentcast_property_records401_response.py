@@ -28,7 +28,7 @@ class RentcastPropertyRecords401Response(BaseModel):
     """
     RentcastPropertyRecords401Response
     """ # noqa: E501
-    status: Optional[Union[StrictFloat, StrictInt]] = 
+    status: Optional[Union[StrictFloat, StrictInt]] = None
     error: Optional[StrictStr] = None
     message: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
@@ -92,7 +92,7 @@ class RentcastPropertyRecords401Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status": obj.get("status") if obj.get("status") is not None else ,
+            "status": obj.get("status") if obj.get("status") is not None else None,
             "error": obj.get("error"),
             "message": obj.get("message")
         })

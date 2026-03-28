@@ -33,7 +33,11 @@ parameterNaming: snake_case
 enumPropertyNaming: snake_case
 removeOperationIdPrefix: true
 sortParamsByRequiredFlag: true
+generateTests: true
 EOF
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export PYTHON_POST_PROCESS_FILE="bash ${SCRIPT_DIR}/fix_generated_defaults.sh"
 
 echo "Generating Python package from OpenAPI spec"
 openapi-generator-cli generate \
@@ -43,6 +47,7 @@ openapi-generator-cli generate \
     --package-name "$PACKAGE_NAME" \
     --api-name-suffix Rentcast \
     --model-name-prefix Rentcast \
-    -c "$CONFIG_FILE"
+    -c "$CONFIG_FILE" \
+    --enable-post-process-file
 
 echo "Package generated in $OUTPUT_DIR"

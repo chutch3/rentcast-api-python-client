@@ -39,16 +39,16 @@ class RentcastValueEstimate200ResponseSubjectProperty(BaseModel):
     zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
     county: Optional[StrictStr] = None
     county_fips: Optional[StrictStr] = Field(default=None, alias="countyFips")
-    latitude: Optional[Union[StrictFloat, StrictInt]] = 
-    longitude: Optional[Union[StrictFloat, StrictInt]] = 
+    latitude: Optional[Union[StrictFloat, StrictInt]] = None
+    longitude: Optional[Union[StrictFloat, StrictInt]] = None
     property_type: Optional[StrictStr] = Field(default=None, alias="propertyType")
-    bedrooms: Optional[Union[StrictFloat, StrictInt]] = 
-    bathrooms: Optional[Union[StrictFloat, StrictInt]] = 
-    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="squareFootage")
-    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="lotSize")
-    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="yearBuilt")
+    bedrooms: Optional[Union[StrictFloat, StrictInt]] = None
+    bathrooms: Optional[Union[StrictFloat, StrictInt]] = None
+    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="squareFootage")
+    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lotSize")
+    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="yearBuilt")
     last_sale_date: Optional[datetime] = Field(default=None, alias="lastSaleDate")
-    last_sale_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="lastSalePrice")
+    last_sale_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lastSalePrice")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "stateFips", "zipCode", "county", "countyFips", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "lastSaleDate", "lastSalePrice"]
 
@@ -120,16 +120,16 @@ class RentcastValueEstimate200ResponseSubjectProperty(BaseModel):
             "zipCode": obj.get("zipCode"),
             "county": obj.get("county"),
             "countyFips": obj.get("countyFips"),
-            "latitude": obj.get("latitude") if obj.get("latitude") is not None else ,
-            "longitude": obj.get("longitude") if obj.get("longitude") is not None else ,
+            "latitude": obj.get("latitude") if obj.get("latitude") is not None else None,
+            "longitude": obj.get("longitude") if obj.get("longitude") is not None else None,
             "propertyType": obj.get("propertyType"),
-            "bedrooms": obj.get("bedrooms") if obj.get("bedrooms") is not None else ,
-            "bathrooms": obj.get("bathrooms") if obj.get("bathrooms") is not None else ,
-            "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else ,
-            "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else ,
-            "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else ,
+            "bedrooms": obj.get("bedrooms") if obj.get("bedrooms") is not None else None,
+            "bathrooms": obj.get("bathrooms") if obj.get("bathrooms") is not None else None,
+            "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else None,
+            "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else None,
+            "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else None,
             "lastSaleDate": obj.get("lastSaleDate"),
-            "lastSalePrice": obj.get("lastSalePrice") if obj.get("lastSalePrice") is not None else 
+            "lastSalePrice": obj.get("lastSalePrice") if obj.get("lastSalePrice") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

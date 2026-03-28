@@ -30,9 +30,9 @@ class RentcastValueEstimate200Response(BaseModel):
     """
     RentcastValueEstimate200Response
     """ # noqa: E501
-    price: Optional[Union[StrictFloat, StrictInt]] = 
-    price_range_low: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="priceRangeLow")
-    price_range_high: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="priceRangeHigh")
+    price: Optional[Union[StrictFloat, StrictInt]] = None
+    price_range_low: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="priceRangeLow")
+    price_range_high: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="priceRangeHigh")
     subject_property: Optional[RentcastValueEstimate200ResponseSubjectProperty] = Field(default=None, alias="subjectProperty")
     comparables: Optional[List[RentcastValueEstimate200ResponseComparablesInner]] = None
     additional_properties: Dict[str, Any] = {}
@@ -106,9 +106,9 @@ class RentcastValueEstimate200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "price": obj.get("price") if obj.get("price") is not None else ,
-            "priceRangeLow": obj.get("priceRangeLow") if obj.get("priceRangeLow") is not None else ,
-            "priceRangeHigh": obj.get("priceRangeHigh") if obj.get("priceRangeHigh") is not None else ,
+            "price": obj.get("price") if obj.get("price") is not None else None,
+            "priceRangeLow": obj.get("priceRangeLow") if obj.get("priceRangeLow") is not None else None,
+            "priceRangeHigh": obj.get("priceRangeHigh") if obj.get("priceRangeHigh") is not None else None,
             "subjectProperty": RentcastValueEstimate200ResponseSubjectProperty.from_dict(obj["subjectProperty"]) if obj.get("subjectProperty") is not None else None,
             "comparables": [RentcastValueEstimate200ResponseComparablesInner.from_dict(_item) for _item in obj["comparables"]] if obj.get("comparables") is not None else None
         })

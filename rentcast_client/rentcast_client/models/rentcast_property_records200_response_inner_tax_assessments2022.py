@@ -28,10 +28,10 @@ class RentcastPropertyRecords200ResponseInnerTaxAssessments2022(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerTaxAssessments2022
     """ # noqa: E501
-    year: Optional[Union[StrictFloat, StrictInt]] = 
-    value: Optional[Union[StrictFloat, StrictInt]] = 
-    land: Optional[Union[StrictFloat, StrictInt]] = 
-    improvements: Optional[Union[StrictFloat, StrictInt]] = 
+    year: Optional[Union[StrictFloat, StrictInt]] = None
+    value: Optional[Union[StrictFloat, StrictInt]] = None
+    land: Optional[Union[StrictFloat, StrictInt]] = None
+    improvements: Optional[Union[StrictFloat, StrictInt]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["year", "value", "land", "improvements"]
 
@@ -93,10 +93,10 @@ class RentcastPropertyRecords200ResponseInnerTaxAssessments2022(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "year": obj.get("year") if obj.get("year") is not None else ,
-            "value": obj.get("value") if obj.get("value") is not None else ,
-            "land": obj.get("land") if obj.get("land") is not None else ,
-            "improvements": obj.get("improvements") if obj.get("improvements") is not None else 
+            "year": obj.get("year") if obj.get("year") is not None else None,
+            "value": obj.get("value") if obj.get("value") is not None else None,
+            "land": obj.get("land") if obj.get("land") is not None else None,
+            "improvements": obj.get("improvements") if obj.get("improvements") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

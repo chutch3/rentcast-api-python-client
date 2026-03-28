@@ -31,7 +31,7 @@ class RentcastPropertyRecords200ResponseInnerHistory20171019(BaseModel):
     """ # noqa: E501
     event: Optional[StrictStr] = None
     var_date: Optional[datetime] = Field(default=None, alias="date")
-    price: Optional[Union[StrictFloat, StrictInt]] = 
+    price: Optional[Union[StrictFloat, StrictInt]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["event", "date", "price"]
 
@@ -95,7 +95,7 @@ class RentcastPropertyRecords200ResponseInnerHistory20171019(BaseModel):
         _obj = cls.model_validate({
             "event": obj.get("event"),
             "date": obj.get("date"),
-            "price": obj.get("price") if obj.get("price") is not None else 
+            "price": obj.get("price") if obj.get("price") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

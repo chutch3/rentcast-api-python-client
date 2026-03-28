@@ -39,24 +39,24 @@ class RentcastValueEstimate200ResponseComparablesInner(BaseModel):
     zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
     county: Optional[StrictStr] = None
     county_fips: Optional[StrictStr] = Field(default=None, alias="countyFips")
-    latitude: Optional[Union[StrictFloat, StrictInt]] = 
-    longitude: Optional[Union[StrictFloat, StrictInt]] = 
+    latitude: Optional[Union[StrictFloat, StrictInt]] = None
+    longitude: Optional[Union[StrictFloat, StrictInt]] = None
     property_type: Optional[StrictStr] = Field(default=None, alias="propertyType")
-    bedrooms: Optional[Union[StrictFloat, StrictInt]] = 
-    bathrooms: Optional[Union[StrictFloat, StrictInt]] = 
-    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="squareFootage")
-    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="lotSize")
-    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="yearBuilt")
+    bedrooms: Optional[Union[StrictFloat, StrictInt]] = None
+    bathrooms: Optional[Union[StrictFloat, StrictInt]] = None
+    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="squareFootage")
+    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lotSize")
+    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="yearBuilt")
     status: Optional[StrictStr] = None
-    price: Optional[Union[StrictFloat, StrictInt]] = 
+    price: Optional[Union[StrictFloat, StrictInt]] = None
     listing_type: Optional[StrictStr] = Field(default=None, alias="listingType")
     listed_date: Optional[datetime] = Field(default=None, alias="listedDate")
     removed_date: Optional[datetime] = Field(default=None, alias="removedDate")
     last_seen_date: Optional[datetime] = Field(default=None, alias="lastSeenDate")
-    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="daysOnMarket")
-    distance: Optional[Union[StrictFloat, StrictInt]] = 
-    days_old: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="daysOld")
-    correlation: Optional[Union[StrictFloat, StrictInt]] = 
+    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="daysOnMarket")
+    distance: Optional[Union[StrictFloat, StrictInt]] = None
+    days_old: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="daysOld")
+    correlation: Optional[Union[StrictFloat, StrictInt]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "stateFips", "zipCode", "county", "countyFips", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "status", "price", "listingType", "listedDate", "removedDate", "lastSeenDate", "daysOnMarket", "distance", "daysOld", "correlation"]
 
@@ -128,24 +128,24 @@ class RentcastValueEstimate200ResponseComparablesInner(BaseModel):
             "zipCode": obj.get("zipCode"),
             "county": obj.get("county"),
             "countyFips": obj.get("countyFips"),
-            "latitude": obj.get("latitude") if obj.get("latitude") is not None else ,
-            "longitude": obj.get("longitude") if obj.get("longitude") is not None else ,
+            "latitude": obj.get("latitude") if obj.get("latitude") is not None else None,
+            "longitude": obj.get("longitude") if obj.get("longitude") is not None else None,
             "propertyType": obj.get("propertyType"),
-            "bedrooms": obj.get("bedrooms") if obj.get("bedrooms") is not None else ,
-            "bathrooms": obj.get("bathrooms") if obj.get("bathrooms") is not None else ,
-            "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else ,
-            "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else ,
-            "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else ,
+            "bedrooms": obj.get("bedrooms") if obj.get("bedrooms") is not None else None,
+            "bathrooms": obj.get("bathrooms") if obj.get("bathrooms") is not None else None,
+            "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else None,
+            "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else None,
+            "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else None,
             "status": obj.get("status"),
-            "price": obj.get("price") if obj.get("price") is not None else ,
+            "price": obj.get("price") if obj.get("price") is not None else None,
             "listingType": obj.get("listingType"),
             "listedDate": obj.get("listedDate"),
             "removedDate": obj.get("removedDate"),
             "lastSeenDate": obj.get("lastSeenDate"),
-            "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else ,
-            "distance": obj.get("distance") if obj.get("distance") is not None else ,
-            "daysOld": obj.get("daysOld") if obj.get("daysOld") is not None else ,
-            "correlation": obj.get("correlation") if obj.get("correlation") is not None else 
+            "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else None,
+            "distance": obj.get("distance") if obj.get("distance") is not None else None,
+            "daysOld": obj.get("daysOld") if obj.get("daysOld") is not None else None,
+            "correlation": obj.get("correlation") if obj.get("correlation") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

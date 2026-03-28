@@ -28,7 +28,7 @@ class RentcastPropertyRecords200ResponseInnerHoa(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerHoa
     """ # noqa: E501
-    fee: Optional[Union[StrictFloat, StrictInt]] = 
+    fee: Optional[Union[StrictFloat, StrictInt]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["fee"]
 
@@ -90,7 +90,7 @@ class RentcastPropertyRecords200ResponseInnerHoa(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "fee": obj.get("fee") if obj.get("fee") is not None else 
+            "fee": obj.get("fee") if obj.get("fee") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

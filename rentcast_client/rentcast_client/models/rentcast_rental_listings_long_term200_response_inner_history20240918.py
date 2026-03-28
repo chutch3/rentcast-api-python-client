@@ -30,11 +30,11 @@ class RentcastRentalListingsLongTerm200ResponseInnerHistory20240918(BaseModel):
     RentcastRentalListingsLongTerm200ResponseInnerHistory20240918
     """ # noqa: E501
     event: Optional[StrictStr] = None
-    price: Optional[Union[StrictFloat, StrictInt]] = 
+    price: Optional[Union[StrictFloat, StrictInt]] = None
     listing_type: Optional[StrictStr] = Field(default=None, alias="listingType")
     listed_date: Optional[datetime] = Field(default=None, alias="listedDate")
     removed_date: Optional[datetime] = Field(default=None, alias="removedDate")
-    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=, alias="daysOnMarket")
+    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="daysOnMarket")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["event", "price", "listingType", "listedDate", "removedDate", "daysOnMarket"]
 
@@ -97,11 +97,11 @@ class RentcastRentalListingsLongTerm200ResponseInnerHistory20240918(BaseModel):
 
         _obj = cls.model_validate({
             "event": obj.get("event"),
-            "price": obj.get("price") if obj.get("price") is not None else ,
+            "price": obj.get("price") if obj.get("price") is not None else None,
             "listingType": obj.get("listingType"),
             "listedDate": obj.get("listedDate"),
             "removedDate": obj.get("removedDate"),
-            "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else 
+            "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
