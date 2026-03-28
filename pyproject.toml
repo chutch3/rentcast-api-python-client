@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rentcast-client"
-version = "2.1.0"
+version = "2.1.1"
 description = "Python client for the Rentcast API"
 authors = ["Cody Hutchens <chutchens91@gmail.com>"]
 license = "MIT"

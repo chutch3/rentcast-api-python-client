@@ -2,9 +2,18 @@
 
 
 
+## v2.1.1 (2026-03-28)
+
+### Fix
+
+* fix: re-release after v2.1.0 failed to publish to PyPI ([`151b526`](https://github.com/chutch3/rentcast-api-python-client/commit/151b5262f7ed01337ed72e7735a23dddda6ad047))
+
+
 ## v2.1.0 (2026-03-28)
 
 ### Chore
+
+* chore(release): v2.1.0 [skip ci] ([`d40df6c`](https://github.com/chutch3/rentcast-api-python-client/commit/d40df6c3704d2f573d80abf49fd2d3f216b6b60e))
 
 * chore: untrack pycache files ([`1a0978d`](https://github.com/chutch3/rentcast-api-python-client/commit/1a0978df5dcbcfc2b182373fdfbc46dfe7157b42))
 
