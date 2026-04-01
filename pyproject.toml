@@ -23,7 +23,10 @@ pytest-asyncio = "^0.23.0"
 
 [tool.semantic_release]
 version_variables = [
-    "rentcast_client/rentcast_client/__init__.py:__version__"
+    "rentcast_client/rentcast_client/__init__.py:__version__",
+    "rentcast_client/rentcast_client/api_client.py:self.user_agent = 'OpenAPI-Generator/{version}/python'",
+    "rentcast_client/rentcast_client/configuration.py:\"SDK Package Version: {version}\".\\",
+    "rentcast_client/rentcast_client_README.md:- Package version: {version}"
 ]
 version_toml = [
     "pyproject.toml:tool.poetry.version"
