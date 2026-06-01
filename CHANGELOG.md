@@ -2,7 +2,18 @@
 
 
 
+## v2.4.0 (2026-06-01)
+
+### Feature
+
+* feat: update client to latest Rentcast API spec (#4) ([`adc72a0`](https://github.com/chutch3/rentcast-api-python-client/commit/adc72a07f3700f3d5ff3718675de727b667f056e))
+
+
 ## v2.3.0 (2026-05-01)
+
+### Chore
+
+* chore(release): v2.3.0 [skip ci] ([`482d9dd`](https://github.com/chutch3/rentcast-api-python-client/commit/482d9dd4409f3ef071ef14176a748dfdb499db06))
 
 ### Feature
 
