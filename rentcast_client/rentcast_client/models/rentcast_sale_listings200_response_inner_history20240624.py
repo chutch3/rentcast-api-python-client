@@ -29,12 +29,12 @@ class RentcastSaleListings200ResponseInnerHistory20240624(BaseModel):
     """
     RentcastSaleListings200ResponseInnerHistory20240624
     """ # noqa: E501
-    event: Optional[StrictStr] = None
-    price: Optional[Union[StrictFloat, StrictInt]] = None
-    listing_type: Optional[StrictStr] = Field(default=None, alias="listingType")
-    listed_date: Optional[datetime] = Field(default=None, alias="listedDate")
+    event: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Sale Listing"]})
+    price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [899000]})
+    listing_type: Optional[StrictStr] = Field(default=None, alias="listingType", json_schema_extra={"examples": ["Standard"]})
+    listed_date: Optional[datetime] = Field(default=None, alias="listedDate", json_schema_extra={"examples": ["2024-06-24T00:00:00.000Z"]})
     removed_date: Optional[datetime] = Field(default=None, alias="removedDate")
-    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="daysOnMarket")
+    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="daysOnMarket", json_schema_extra={"examples": [99]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["event", "price", "listingType", "listedDate", "removedDate", "daysOnMarket"]
 

@@ -30,7 +30,7 @@ class RentcastPropertyRecords200ResponseInnerOwner(BaseModel):
     RentcastPropertyRecords200ResponseInnerOwner
     """ # noqa: E501
     names: Optional[List[StrictStr]] = None
-    type: Optional[StrictStr] = None
+    type: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Individual"]})
     mailing_address: Optional[RentcastPropertyRecords200ResponseInnerOwnerMailingAddress] = Field(default=None, alias="mailingAddress")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["names", "type", "mailingAddress"]

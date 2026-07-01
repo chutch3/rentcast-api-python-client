@@ -21,10 +21,9 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from rentcast_client.models.rentcast_property_records200_response_inner_hoa import RentcastPropertyRecords200ResponseInnerHoa
 from rentcast_client.models.rentcast_rental_listings_long_term200_response_inner_history import RentcastRentalListingsLongTerm200ResponseInnerHistory
-from rentcast_client.models.rentcast_rental_listings_long_term200_response_inner_hoa import RentcastRentalListingsLongTerm200ResponseInnerHoa
-from rentcast_client.models.rentcast_rental_listings_long_term200_response_inner_listing_agent import RentcastRentalListingsLongTerm200ResponseInnerListingAgent
-from rentcast_client.models.rentcast_rental_listings_long_term200_response_inner_listing_office import RentcastRentalListingsLongTerm200ResponseInnerListingOffice
+from rentcast_client.models.rentcast_sale_listings200_response_inner_listing_agent import RentcastSaleListings200ResponseInnerListingAgent
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,37 +32,37 @@ class RentcastRentalListingsLongTerm200ResponseInner(BaseModel):
     """
     RentcastRentalListingsLongTerm200ResponseInner
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    formatted_address: Optional[StrictStr] = Field(default=None, alias="formattedAddress")
-    address_line1: Optional[StrictStr] = Field(default=None, alias="addressLine1")
+    id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["2005-Arborside-Dr,-Austin,-TX-78754"]})
+    formatted_address: Optional[StrictStr] = Field(default=None, alias="formattedAddress", json_schema_extra={"examples": ["2005 Arborside Dr, Austin, TX 78754"]})
+    address_line1: Optional[StrictStr] = Field(default=None, alias="addressLine1", json_schema_extra={"examples": ["2005 Arborside Dr"]})
     address_line2: Optional[StrictStr] = Field(default=None, alias="addressLine2")
-    city: Optional[StrictStr] = None
-    state: Optional[StrictStr] = None
-    state_fips: Optional[StrictStr] = Field(default=None, alias="stateFips")
-    zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
-    county: Optional[StrictStr] = None
-    county_fips: Optional[StrictStr] = Field(default=None, alias="countyFips")
-    latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    longitude: Optional[Union[StrictFloat, StrictInt]] = None
-    property_type: Optional[StrictStr] = Field(default=None, alias="propertyType")
-    bedrooms: Optional[Union[StrictFloat, StrictInt]] = None
-    bathrooms: Optional[Union[StrictFloat, StrictInt]] = None
-    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="squareFootage")
-    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lotSize")
-    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="yearBuilt")
-    hoa: Optional[RentcastRentalListingsLongTerm200ResponseInnerHoa] = None
-    status: Optional[StrictStr] = None
-    price: Optional[Union[StrictFloat, StrictInt]] = None
-    listing_type: Optional[StrictStr] = Field(default=None, alias="listingType")
-    listed_date: Optional[datetime] = Field(default=None, alias="listedDate")
+    city: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Austin"]})
+    state: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["TX"]})
+    state_fips: Optional[StrictStr] = Field(default=None, alias="stateFips", json_schema_extra={"examples": ["48"]})
+    zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode", json_schema_extra={"examples": ["78754"]})
+    county: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Travis"]})
+    county_fips: Optional[StrictStr] = Field(default=None, alias="countyFips", json_schema_extra={"examples": ["453"]})
+    latitude: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [30.35837]})
+    longitude: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [-97.66508]})
+    property_type: Optional[StrictStr] = Field(default=None, alias="propertyType", json_schema_extra={"examples": ["Single Family"]})
+    bedrooms: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [3]})
+    bathrooms: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [2.5]})
+    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="squareFootage", json_schema_extra={"examples": [1681]})
+    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lotSize", json_schema_extra={"examples": [4360]})
+    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="yearBuilt", json_schema_extra={"examples": [2019]})
+    hoa: Optional[RentcastPropertyRecords200ResponseInnerHoa] = None
+    status: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Active"]})
+    price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [2200]})
+    listing_type: Optional[StrictStr] = Field(default=None, alias="listingType", json_schema_extra={"examples": ["Standard"]})
+    listed_date: Optional[datetime] = Field(default=None, alias="listedDate", json_schema_extra={"examples": ["2024-09-18T00:00:00.000Z"]})
     removed_date: Optional[datetime] = Field(default=None, alias="removedDate")
-    created_date: Optional[datetime] = Field(default=None, alias="createdDate")
-    last_seen_date: Optional[datetime] = Field(default=None, alias="lastSeenDate")
-    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="daysOnMarket")
-    mls_name: Optional[StrictStr] = Field(default=None, alias="mlsName")
-    mls_number: Optional[StrictStr] = Field(default=None, alias="mlsNumber")
-    listing_agent: Optional[RentcastRentalListingsLongTerm200ResponseInnerListingAgent] = Field(default=None, alias="listingAgent")
-    listing_office: Optional[RentcastRentalListingsLongTerm200ResponseInnerListingOffice] = Field(default=None, alias="listingOffice")
+    created_date: Optional[datetime] = Field(default=None, alias="createdDate", json_schema_extra={"examples": ["2024-09-19T00:00:00.000Z"]})
+    last_seen_date: Optional[datetime] = Field(default=None, alias="lastSeenDate", json_schema_extra={"examples": ["2024-09-30T03:49:20.620Z"]})
+    days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="daysOnMarket", json_schema_extra={"examples": [13]})
+    mls_name: Optional[StrictStr] = Field(default=None, alias="mlsName", json_schema_extra={"examples": ["CentralTexas"]})
+    mls_number: Optional[StrictStr] = Field(default=None, alias="mlsNumber", json_schema_extra={"examples": ["556965"]})
+    listing_agent: Optional[RentcastSaleListings200ResponseInnerListingAgent] = Field(default=None, alias="listingAgent")
+    listing_office: Optional[RentcastSaleListings200ResponseInnerListingAgent] = Field(default=None, alias="listingOffice")
     history: Optional[RentcastRentalListingsLongTerm200ResponseInnerHistory] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "stateFips", "zipCode", "county", "countyFips", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "hoa", "status", "price", "listingType", "listedDate", "removedDate", "createdDate", "lastSeenDate", "daysOnMarket", "mlsName", "mlsNumber", "listingAgent", "listingOffice", "history"]
@@ -156,7 +155,7 @@ class RentcastRentalListingsLongTerm200ResponseInner(BaseModel):
             "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else None,
             "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else None,
             "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else None,
-            "hoa": RentcastRentalListingsLongTerm200ResponseInnerHoa.from_dict(obj["hoa"]) if obj.get("hoa") is not None else None,
+            "hoa": RentcastPropertyRecords200ResponseInnerHoa.from_dict(obj["hoa"]) if obj.get("hoa") is not None else None,
             "status": obj.get("status"),
             "price": obj.get("price") if obj.get("price") is not None else None,
             "listingType": obj.get("listingType"),
@@ -167,8 +166,8 @@ class RentcastRentalListingsLongTerm200ResponseInner(BaseModel):
             "daysOnMarket": obj.get("daysOnMarket") if obj.get("daysOnMarket") is not None else None,
             "mlsName": obj.get("mlsName"),
             "mlsNumber": obj.get("mlsNumber"),
-            "listingAgent": RentcastRentalListingsLongTerm200ResponseInnerListingAgent.from_dict(obj["listingAgent"]) if obj.get("listingAgent") is not None else None,
-            "listingOffice": RentcastRentalListingsLongTerm200ResponseInnerListingOffice.from_dict(obj["listingOffice"]) if obj.get("listingOffice") is not None else None,
+            "listingAgent": RentcastSaleListings200ResponseInnerListingAgent.from_dict(obj["listingAgent"]) if obj.get("listingAgent") is not None else None,
+            "listingOffice": RentcastSaleListings200ResponseInnerListingAgent.from_dict(obj["listingOffice"]) if obj.get("listingOffice") is not None else None,
             "history": RentcastRentalListingsLongTerm200ResponseInnerHistory.from_dict(obj["history"]) if obj.get("history") is not None else None
         })
         # store additional fields in additional_properties

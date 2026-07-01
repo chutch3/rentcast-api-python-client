@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,10 +28,10 @@ class RentcastSaleListings200ResponseInnerListingAgent(BaseModel):
     """
     RentcastSaleListings200ResponseInnerListingAgent
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    phone: Optional[StrictStr] = None
-    email: Optional[StrictStr] = None
-    website: Optional[StrictStr] = None
+    name: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Jennifer Welch"]})
+    phone: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["5124313110"]})
+    email: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["jennifer@gottesmanresidential.com"]})
+    website: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["https://www.gottesmanresidential.com"]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["name", "phone", "email", "website"]
 

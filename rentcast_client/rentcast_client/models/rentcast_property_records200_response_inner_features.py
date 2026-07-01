@@ -28,25 +28,25 @@ class RentcastPropertyRecords200ResponseInnerFeatures(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerFeatures
     """ # noqa: E501
-    architecture_type: Optional[StrictStr] = Field(default=None, alias="architectureType")
-    cooling: Optional[StrictBool] = False
-    cooling_type: Optional[StrictStr] = Field(default=None, alias="coolingType")
-    exterior_type: Optional[StrictStr] = Field(default=None, alias="exteriorType")
-    fireplace: Optional[StrictBool] = False
-    fireplace_type: Optional[StrictStr] = Field(default=None, alias="fireplaceType")
-    floor_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="floorCount")
-    foundation_type: Optional[StrictStr] = Field(default=None, alias="foundationType")
-    garage: Optional[StrictBool] = False
-    garage_spaces: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="garageSpaces")
-    garage_type: Optional[StrictStr] = Field(default=None, alias="garageType")
-    heating: Optional[StrictBool] = False
-    heating_type: Optional[StrictStr] = Field(default=None, alias="heatingType")
-    pool: Optional[StrictBool] = False
-    pool_type: Optional[StrictStr] = Field(default=None, alias="poolType")
-    roof_type: Optional[StrictStr] = Field(default=None, alias="roofType")
-    room_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="roomCount")
-    unit_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="unitCount")
-    view_type: Optional[StrictStr] = Field(default=None, alias="viewType")
+    architecture_type: Optional[StrictStr] = Field(default=None, alias="architectureType", json_schema_extra={"examples": ["Contemporary"]})
+    cooling: Optional[StrictBool] = Field(default=False, json_schema_extra={"examples": [True]})
+    cooling_type: Optional[StrictStr] = Field(default=None, alias="coolingType", json_schema_extra={"examples": ["Central"]})
+    exterior_type: Optional[StrictStr] = Field(default=None, alias="exteriorType", json_schema_extra={"examples": ["Wood"]})
+    fireplace: Optional[StrictBool] = Field(default=False, json_schema_extra={"examples": [True]})
+    fireplace_type: Optional[StrictStr] = Field(default=None, alias="fireplaceType", json_schema_extra={"examples": ["Masonry"]})
+    floor_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="floorCount", json_schema_extra={"examples": [1]})
+    foundation_type: Optional[StrictStr] = Field(default=None, alias="foundationType", json_schema_extra={"examples": ["Slab / Mat / Raft"]})
+    garage: Optional[StrictBool] = Field(default=False, json_schema_extra={"examples": [True]})
+    garage_spaces: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="garageSpaces", json_schema_extra={"examples": [2]})
+    garage_type: Optional[StrictStr] = Field(default=None, alias="garageType", json_schema_extra={"examples": ["Garage"]})
+    heating: Optional[StrictBool] = Field(default=False, json_schema_extra={"examples": [True]})
+    heating_type: Optional[StrictStr] = Field(default=None, alias="heatingType", json_schema_extra={"examples": ["Forced Air"]})
+    pool: Optional[StrictBool] = Field(default=False, json_schema_extra={"examples": [True]})
+    pool_type: Optional[StrictStr] = Field(default=None, alias="poolType", json_schema_extra={"examples": ["Concrete"]})
+    roof_type: Optional[StrictStr] = Field(default=None, alias="roofType", json_schema_extra={"examples": ["Asphalt"]})
+    room_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="roomCount", json_schema_extra={"examples": [5]})
+    unit_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="unitCount", json_schema_extra={"examples": [1]})
+    view_type: Optional[StrictStr] = Field(default=None, alias="viewType", json_schema_extra={"examples": ["City"]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["architectureType", "cooling", "coolingType", "exteriorType", "fireplace", "fireplaceType", "floorCount", "foundationType", "garage", "garageSpaces", "garageType", "heating", "heatingType", "pool", "poolType", "roofType", "roomCount", "unitCount", "viewType"]
 
