@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from rentcast_client.models.rentcast_rent_estimate_long_term200_response_comparables_inner import RentcastRentEstimateLongTerm200ResponseComparablesInner
+from rentcast_client.models.rentcast_value_estimate200_response_comparables_inner import RentcastValueEstimate200ResponseComparablesInner
 from rentcast_client.models.rentcast_value_estimate200_response_subject_property import RentcastValueEstimate200ResponseSubjectProperty
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,11 +30,11 @@ class RentcastRentEstimateLongTerm200Response(BaseModel):
     """
     RentcastRentEstimateLongTerm200Response
     """ # noqa: E501
-    rent: Optional[Union[StrictFloat, StrictInt]] = None
-    rent_range_low: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="rentRangeLow")
-    rent_range_high: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="rentRangeHigh")
+    rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [1620]})
+    rent_range_low: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="rentRangeLow", json_schema_extra={"examples": [1550]})
+    rent_range_high: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="rentRangeHigh", json_schema_extra={"examples": [1690]})
     subject_property: Optional[RentcastValueEstimate200ResponseSubjectProperty] = Field(default=None, alias="subjectProperty")
-    comparables: Optional[List[RentcastRentEstimateLongTerm200ResponseComparablesInner]] = None
+    comparables: Optional[List[RentcastValueEstimate200ResponseComparablesInner]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["rent", "rentRangeLow", "rentRangeHigh", "subjectProperty", "comparables"]
 
@@ -110,7 +110,7 @@ class RentcastRentEstimateLongTerm200Response(BaseModel):
             "rentRangeLow": obj.get("rentRangeLow") if obj.get("rentRangeLow") is not None else None,
             "rentRangeHigh": obj.get("rentRangeHigh") if obj.get("rentRangeHigh") is not None else None,
             "subjectProperty": RentcastValueEstimate200ResponseSubjectProperty.from_dict(obj["subjectProperty"]) if obj.get("subjectProperty") is not None else None,
-            "comparables": [RentcastRentEstimateLongTerm200ResponseComparablesInner.from_dict(_item) for _item in obj["comparables"]] if obj.get("comparables") is not None else None
+            "comparables": [RentcastValueEstimate200ResponseComparablesInner.from_dict(_item) for _item in obj["comparables"]] if obj.get("comparables") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

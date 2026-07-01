@@ -6,10 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_2020** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2020**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2020.md) |  | [optional] 
-**var_2021** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2021**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2021.md) |  | [optional] 
-**var_2022** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2022**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2022.md) |  | [optional] 
-**var_2023** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2023**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2023.md) |  | [optional] 
-**var_2024** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2024**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2024.md) |  | [optional] 
+**var_2021** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2020**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2020.md) |  | [optional] 
+**var_2022** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2020**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2020.md) |  | [optional] 
+**var_2023** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2020**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2020.md) |  | [optional] 
+**var_2024** | [**RentcastPropertyRecords200ResponseInnerPropertyTaxes2020**](RentcastPropertyRecords200ResponseInnerPropertyTaxes2020.md) |  | [optional] 
 
 ## Example
 

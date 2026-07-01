@@ -30,8 +30,8 @@ class RentcastMarketStatistics200Response(BaseModel):
     """
     RentcastMarketStatistics200Response
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
+    id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["29611"]})
+    zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode", json_schema_extra={"examples": ["29611"]})
     sale_data: Optional[RentcastMarketStatistics200ResponseSaleData] = Field(default=None, alias="saleData")
     rental_data: Optional[RentcastMarketStatistics200ResponseRentalData] = Field(default=None, alias="rentalData")
     additional_properties: Dict[str, Any] = {}

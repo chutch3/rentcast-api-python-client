@@ -30,9 +30,9 @@ class RentcastValueEstimate200Response(BaseModel):
     """
     RentcastValueEstimate200Response
     """ # noqa: E501
-    price: Optional[Union[StrictFloat, StrictInt]] = None
-    price_range_low: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="priceRangeLow")
-    price_range_high: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="priceRangeHigh")
+    price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [250000]})
+    price_range_low: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="priceRangeLow", json_schema_extra={"examples": [195000]})
+    price_range_high: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="priceRangeHigh", json_schema_extra={"examples": [304000]})
     subject_property: Optional[RentcastValueEstimate200ResponseSubjectProperty] = Field(default=None, alias="subjectProperty")
     comparables: Optional[List[RentcastValueEstimate200ResponseComparablesInner]] = None
     additional_properties: Dict[str, Any] = {}

@@ -29,26 +29,26 @@ class RentcastValueEstimate200ResponseSubjectProperty(BaseModel):
     """
     RentcastValueEstimate200ResponseSubjectProperty
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    formatted_address: Optional[StrictStr] = Field(default=None, alias="formattedAddress")
-    address_line1: Optional[StrictStr] = Field(default=None, alias="addressLine1")
+    id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["5500-Grand-Lake-Dr,-San-Antonio,-TX-78244"]})
+    formatted_address: Optional[StrictStr] = Field(default=None, alias="formattedAddress", json_schema_extra={"examples": ["5500 Grand Lake Dr, San Antonio, TX 78244"]})
+    address_line1: Optional[StrictStr] = Field(default=None, alias="addressLine1", json_schema_extra={"examples": ["5500 Grand Lake Dr"]})
     address_line2: Optional[StrictStr] = Field(default=None, alias="addressLine2")
-    city: Optional[StrictStr] = None
-    state: Optional[StrictStr] = None
-    state_fips: Optional[StrictStr] = Field(default=None, alias="stateFips")
-    zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
-    county: Optional[StrictStr] = None
-    county_fips: Optional[StrictStr] = Field(default=None, alias="countyFips")
-    latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    longitude: Optional[Union[StrictFloat, StrictInt]] = None
-    property_type: Optional[StrictStr] = Field(default=None, alias="propertyType")
-    bedrooms: Optional[Union[StrictFloat, StrictInt]] = None
-    bathrooms: Optional[Union[StrictFloat, StrictInt]] = None
-    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="squareFootage")
-    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lotSize")
-    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="yearBuilt")
-    last_sale_date: Optional[datetime] = Field(default=None, alias="lastSaleDate")
-    last_sale_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lastSalePrice")
+    city: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["San Antonio"]})
+    state: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["TX"]})
+    state_fips: Optional[StrictStr] = Field(default=None, alias="stateFips", json_schema_extra={"examples": ["48"]})
+    zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode", json_schema_extra={"examples": ["78244"]})
+    county: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Bexar"]})
+    county_fips: Optional[StrictStr] = Field(default=None, alias="countyFips", json_schema_extra={"examples": ["029"]})
+    latitude: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [29.476011]})
+    longitude: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [-98.351454]})
+    property_type: Optional[StrictStr] = Field(default=None, alias="propertyType", json_schema_extra={"examples": ["Single Family"]})
+    bedrooms: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [3]})
+    bathrooms: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [2]})
+    square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="squareFootage", json_schema_extra={"examples": [1878]})
+    lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lotSize", json_schema_extra={"examples": [8843]})
+    year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="yearBuilt", json_schema_extra={"examples": [1973]})
+    last_sale_date: Optional[datetime] = Field(default=None, alias="lastSaleDate", json_schema_extra={"examples": ["2024-11-18T00:00:00.000Z"]})
+    last_sale_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lastSalePrice", json_schema_extra={"examples": [270000]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "stateFips", "zipCode", "county", "countyFips", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "lastSaleDate", "lastSalePrice"]
 

@@ -28,14 +28,14 @@ class RentcastPropertyRecords200ResponseInnerOwnerMailingAddress(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerOwnerMailingAddress
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    formatted_address: Optional[StrictStr] = Field(default=None, alias="formattedAddress")
-    address_line1: Optional[StrictStr] = Field(default=None, alias="addressLine1")
+    id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["5500-Grand-Lake-Dr,-San-Antonio,-TX-78244"]})
+    formatted_address: Optional[StrictStr] = Field(default=None, alias="formattedAddress", json_schema_extra={"examples": ["5500 Grand Lake Dr, San Antonio, TX 78244"]})
+    address_line1: Optional[StrictStr] = Field(default=None, alias="addressLine1", json_schema_extra={"examples": ["5500 Grand Lake Dr"]})
     address_line2: Optional[StrictStr] = Field(default=None, alias="addressLine2")
-    city: Optional[StrictStr] = None
-    state: Optional[StrictStr] = None
-    state_fips: Optional[StrictStr] = Field(default=None, alias="stateFips")
-    zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode")
+    city: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["San Antonio"]})
+    state: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["TX"]})
+    state_fips: Optional[StrictStr] = Field(default=None, alias="stateFips", json_schema_extra={"examples": ["48"]})
+    zip_code: Optional[StrictStr] = Field(default=None, alias="zipCode", json_schema_extra={"examples": ["78244"]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "stateFips", "zipCode"]
 

@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **square_footage** | **float** |  | [optional] [default to ]
 **lot_size** | **float** |  | [optional] [default to ]
 **year_built** | **float** |  | [optional] [default to ]
-**hoa** | [**RentcastRentalListingsLongTerm200ResponseInnerHoa**](RentcastRentalListingsLongTerm200ResponseInnerHoa.md) |  | [optional] 
+**hoa** | [**RentcastPropertyRecords200ResponseInnerHoa**](RentcastPropertyRecords200ResponseInnerHoa.md) |  | [optional] 
 **status** | **str** |  | [optional] 
 **price** | **float** |  | [optional] [default to ]
 **listing_type** | **str** |  | [optional] 
@@ -34,8 +34,8 @@ Name | Type | Description | Notes
 **days_on_market** | **float** |  | [optional] [default to ]
 **mls_name** | **str** |  | [optional] 
 **mls_number** | **str** |  | [optional] 
-**listing_agent** | [**RentcastRentalListingsLongTerm200ResponseInnerListingAgent**](RentcastRentalListingsLongTerm200ResponseInnerListingAgent.md) |  | [optional] 
-**listing_office** | [**RentcastRentalListingsLongTerm200ResponseInnerListingOffice**](RentcastRentalListingsLongTerm200ResponseInnerListingOffice.md) |  | [optional] 
+**listing_agent** | [**RentcastSaleListings200ResponseInnerListingAgent**](RentcastSaleListings200ResponseInnerListingAgent.md) |  | [optional] 
+**listing_office** | [**RentcastSaleListings200ResponseInnerListingAgent**](RentcastSaleListings200ResponseInnerListingAgent.md) |  | [optional] 
 **history** | [**RentcastRentalListingsLongTerm200ResponseInnerHistory**](RentcastRentalListingsLongTerm200ResponseInnerHistory.md) |  | [optional] 
 
 ## Example
