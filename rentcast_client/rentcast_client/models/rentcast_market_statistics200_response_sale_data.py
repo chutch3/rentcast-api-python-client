@@ -102,15 +102,13 @@ class RentcastMarketStatistics200ResponseSaleData(BaseModel):
         _items = []
         if self.data_by_property_type:
             for _item_data_by_property_type in self.data_by_property_type:
-                if _item_data_by_property_type:
-                    _items.append(_item_data_by_property_type.to_dict())
+                _items.append(_item_data_by_property_type.to_dict() if _item_data_by_property_type is not None else None)
             _dict['dataByPropertyType'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in data_by_bedrooms (list)
         _items = []
         if self.data_by_bedrooms:
             for _item_data_by_bedrooms in self.data_by_bedrooms:
-                if _item_data_by_bedrooms:
-                    _items.append(_item_data_by_bedrooms.to_dict())
+                _items.append(_item_data_by_bedrooms.to_dict() if _item_data_by_bedrooms is not None else None)
             _dict['dataByBedrooms'] = _items
         # override the default output from pydantic by calling `to_dict()` of history
         if self.history:

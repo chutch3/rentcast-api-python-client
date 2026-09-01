@@ -21,9 +21,10 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from rentcast_client.models.rentcast_property_records200_response_inner_hoa import RentcastPropertyRecords200ResponseInnerHoa
 from rentcast_client.models.rentcast_sale_listings200_response_inner_history import RentcastSaleListings200ResponseInnerHistory
+from rentcast_client.models.rentcast_sale_listings200_response_inner_hoa import RentcastSaleListings200ResponseInnerHoa
 from rentcast_client.models.rentcast_sale_listings200_response_inner_listing_agent import RentcastSaleListings200ResponseInnerListingAgent
+from rentcast_client.models.rentcast_sale_listings200_response_inner_listing_office import RentcastSaleListings200ResponseInnerListingOffice
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -50,7 +51,7 @@ class RentcastSaleListingById200Response(BaseModel):
     square_footage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="squareFootage", json_schema_extra={"examples": [2345]})
     lot_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lotSize", json_schema_extra={"examples": [3284]})
     year_built: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="yearBuilt", json_schema_extra={"examples": [2008]})
-    hoa: Optional[RentcastPropertyRecords200ResponseInnerHoa] = None
+    hoa: Optional[RentcastSaleListings200ResponseInnerHoa] = None
     status: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Active"]})
     price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [899000]})
     listing_type: Optional[StrictStr] = Field(default=None, alias="listingType", json_schema_extra={"examples": ["Standard"]})
@@ -62,7 +63,7 @@ class RentcastSaleListingById200Response(BaseModel):
     mls_name: Optional[StrictStr] = Field(default=None, alias="mlsName", json_schema_extra={"examples": ["UnlockMLS"]})
     mls_number: Optional[StrictStr] = Field(default='', alias="mlsNumber", json_schema_extra={"examples": ["5519228"]})
     listing_agent: Optional[RentcastSaleListings200ResponseInnerListingAgent] = Field(default=None, alias="listingAgent")
-    listing_office: Optional[RentcastSaleListings200ResponseInnerListingAgent] = Field(default=None, alias="listingOffice")
+    listing_office: Optional[RentcastSaleListings200ResponseInnerListingOffice] = Field(default=None, alias="listingOffice")
     history: Optional[RentcastSaleListings200ResponseInnerHistory] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "formattedAddress", "addressLine1", "addressLine2", "city", "state", "stateFips", "zipCode", "county", "countyFips", "latitude", "longitude", "propertyType", "bedrooms", "bathrooms", "squareFootage", "lotSize", "yearBuilt", "hoa", "status", "price", "listingType", "listedDate", "removedDate", "createdDate", "lastSeenDate", "daysOnMarket", "mlsName", "mlsNumber", "listingAgent", "listingOffice", "history"]
@@ -155,7 +156,7 @@ class RentcastSaleListingById200Response(BaseModel):
             "squareFootage": obj.get("squareFootage") if obj.get("squareFootage") is not None else None,
             "lotSize": obj.get("lotSize") if obj.get("lotSize") is not None else None,
             "yearBuilt": obj.get("yearBuilt") if obj.get("yearBuilt") is not None else None,
-            "hoa": RentcastPropertyRecords200ResponseInnerHoa.from_dict(obj["hoa"]) if obj.get("hoa") is not None else None,
+            "hoa": RentcastSaleListings200ResponseInnerHoa.from_dict(obj["hoa"]) if obj.get("hoa") is not None else None,
             "status": obj.get("status"),
             "price": obj.get("price") if obj.get("price") is not None else None,
             "listingType": obj.get("listingType"),
@@ -167,7 +168,7 @@ class RentcastSaleListingById200Response(BaseModel):
             "mlsName": obj.get("mlsName"),
             "mlsNumber": obj.get("mlsNumber") if obj.get("mlsNumber") is not None else '',
             "listingAgent": RentcastSaleListings200ResponseInnerListingAgent.from_dict(obj["listingAgent"]) if obj.get("listingAgent") is not None else None,
-            "listingOffice": RentcastSaleListings200ResponseInnerListingAgent.from_dict(obj["listingOffice"]) if obj.get("listingOffice") is not None else None,
+            "listingOffice": RentcastSaleListings200ResponseInnerListingOffice.from_dict(obj["listingOffice"]) if obj.get("listingOffice") is not None else None,
             "history": RentcastSaleListings200ResponseInnerHistory.from_dict(obj["history"]) if obj.get("history") is not None else None
         })
         # store additional fields in additional_properties

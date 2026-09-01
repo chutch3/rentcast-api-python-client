@@ -324,7 +324,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -588,7 +588,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -1126,7 +1126,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -1392,7 +1392,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -1828,7 +1828,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -2092,7 +2092,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -2664,7 +2664,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -2928,7 +2928,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -3500,7 +3500,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -3616,7 +3616,7 @@ class DefaultRentcast:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RentcastValueEstimate200Response",
-            '401': "RentcastPropertyRecords401Response",
+            '401': "RentcastValueEstimate401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3724,7 +3724,7 @@ class DefaultRentcast:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RentcastValueEstimate200Response",
-            '401': "RentcastPropertyRecords401Response",
+            '401': "RentcastValueEstimate401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3832,7 +3832,7 @@ class DefaultRentcast:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RentcastValueEstimate200Response",
-            '401': "RentcastPropertyRecords401Response",
+            '401': "RentcastValueEstimate401Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3936,7 +3936,7 @@ class DefaultRentcast:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'sec0'
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(

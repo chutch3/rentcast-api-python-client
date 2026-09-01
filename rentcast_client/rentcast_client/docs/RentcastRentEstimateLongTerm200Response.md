@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **rent_range_low** | **float** |  | [optional] [default to ]
 **rent_range_high** | **float** |  | [optional] [default to ]
 **subject_property** | [**RentcastValueEstimate200ResponseSubjectProperty**](RentcastValueEstimate200ResponseSubjectProperty.md) |  | [optional] 
-**comparables** | [**List[RentcastValueEstimate200ResponseComparablesInner]**](RentcastValueEstimate200ResponseComparablesInner.md) |  | [optional] 
+**comparables** | [**List[RentcastRentEstimateLongTerm200ResponseComparablesInner]**](RentcastRentEstimateLongTerm200ResponseComparablesInner.md) |  | [optional] 
 
 ## Example
 

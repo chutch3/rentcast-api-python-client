@@ -86,8 +86,7 @@ class RentcastValueEstimate200Response(BaseModel):
         _items = []
         if self.comparables:
             for _item_comparables in self.comparables:
-                if _item_comparables:
-                    _items.append(_item_comparables.to_dict())
+                _items.append(_item_comparables.to_dict() if _item_comparables is not None else None)
             _dict['comparables'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

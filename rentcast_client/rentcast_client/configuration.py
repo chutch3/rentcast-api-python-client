@@ -113,7 +113,7 @@ HTTPSignatureAuthSetting = TypedDict(
 AuthSettings = TypedDict(
     "AuthSettings",
     {
-        "sec0": APIKeyAuthSetting,
+        "ApiKeyAuth": APIKeyAuthSetting,
     },
     total=False,
 )
@@ -360,6 +360,7 @@ conf = rentcast_client.Configuration(
         """
         self.client_session_kwargs = client_session_kwargs
         """Extra kwargs merged into aiohttp.ClientSession(**kwargs).
+
         """
         # Enable client side validation
         self.client_side_validation = client_side_validation
@@ -385,9 +386,9 @@ conf = rentcast_client.Configuration(
                 setattr(result, k, copy.deepcopy(v, memo))
         # shallow copy of loggers
         result.logger = copy.copy(self.logger)
-        # use setters to configure loggers
+        # use setter to re-create the file handler (excluded from __dict__ copy)
         result.logger_file = self.logger_file
-        result.debug = self.debug
+
         return result
 
     def __setattr__(self, name: str, value: Any) -> None:
@@ -524,7 +525,8 @@ conf = rentcast_client.Configuration(
             self.refresh_api_key_hook(self)
         key = self.api_key.get(identifier, self.api_key.get(alias) if alias is not None else None)
         if key:
-            prefix = self.api_key_prefix.get(identifier)
+            prefix = self.api_key_prefix.get(
+                identifier, self.api_key_prefix.get(alias) if alias is not None else None)
             if prefix:
                 return "%s %s" % (prefix, key)
             else:
@@ -554,13 +556,13 @@ conf = rentcast_client.Configuration(
         :return: The Auth Settings information dict.
         """
         auth: AuthSettings = {}
-        if 'sec0' in self.api_key:
-            auth['sec0'] = {
+        if 'ApiKeyAuth' in self.api_key:
+            auth['ApiKeyAuth'] = {
                 'type': 'api_key',
                 'in': 'header',
                 'key': 'X-Api-Key',
                 'value': self.get_api_key_with_prefix(
-                    'sec0',
+                    'ApiKeyAuth',
                 ),
             }
         return auth
@@ -574,7 +576,7 @@ conf = rentcast_client.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 1.0\n"\
-               "SDK Package Version: 2.4.0".\
+               "SDK Package Version: 2.5.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self) -> List[HostSetting]:

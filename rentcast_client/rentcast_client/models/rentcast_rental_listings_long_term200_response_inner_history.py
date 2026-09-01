@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from rentcast_client.models.rentcast_sale_listings200_response_inner_history20240624 import RentcastSaleListings200ResponseInnerHistory20240624
+from rentcast_client.models.rentcast_rental_listings_long_term200_response_inner_history20240918 import RentcastRentalListingsLongTerm200ResponseInnerHistory20240918
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,7 +29,7 @@ class RentcastRentalListingsLongTerm200ResponseInnerHistory(BaseModel):
     """
     RentcastRentalListingsLongTerm200ResponseInnerHistory
     """ # noqa: E501
-    var_2024_09_18: Optional[RentcastSaleListings200ResponseInnerHistory20240624] = Field(default=None, alias="2024-09-18")
+    var_2024_09_18: Optional[RentcastRentalListingsLongTerm200ResponseInnerHistory20240918] = Field(default=None, alias="2024-09-18")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["2024-09-18"]
 
@@ -94,7 +94,7 @@ class RentcastRentalListingsLongTerm200ResponseInnerHistory(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "2024-09-18": RentcastSaleListings200ResponseInnerHistory20240624.from_dict(obj["2024-09-18"]) if obj.get("2024-09-18") is not None else None
+            "2024-09-18": RentcastRentalListingsLongTerm200ResponseInnerHistory20240918.from_dict(obj["2024-09-18"]) if obj.get("2024-09-18") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

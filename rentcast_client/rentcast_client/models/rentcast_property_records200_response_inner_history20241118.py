@@ -29,9 +29,9 @@ class RentcastPropertyRecords200ResponseInnerHistory20241118(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerHistory20241118
     """ # noqa: E501
-    event: Optional[StrictStr] = None
-    var_date: Optional[datetime] = Field(default=None, alias="date")
-    price: Optional[Union[StrictFloat, StrictInt]] = None
+    event: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Sale"]})
+    var_date: Optional[datetime] = Field(default=None, alias="date", json_schema_extra={"examples": ["2024-11-18T00:00:00.000Z"]})
+    price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [270000]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["event", "date", "price"]
 

@@ -21,6 +21,10 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from rentcast_client.models.rentcast_property_records200_response_inner_tax_assessments2020 import RentcastPropertyRecords200ResponseInnerTaxAssessments2020
+from rentcast_client.models.rentcast_property_records200_response_inner_tax_assessments2021 import RentcastPropertyRecords200ResponseInnerTaxAssessments2021
+from rentcast_client.models.rentcast_property_records200_response_inner_tax_assessments2022 import RentcastPropertyRecords200ResponseInnerTaxAssessments2022
+from rentcast_client.models.rentcast_property_records200_response_inner_tax_assessments2023 import RentcastPropertyRecords200ResponseInnerTaxAssessments2023
+from rentcast_client.models.rentcast_property_records200_response_inner_tax_assessments2024 import RentcastPropertyRecords200ResponseInnerTaxAssessments2024
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,10 +34,10 @@ class RentcastPropertyRecords200ResponseInnerTaxAssessments(BaseModel):
     RentcastPropertyRecords200ResponseInnerTaxAssessments
     """ # noqa: E501
     var_2020: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2020] = Field(default=None, alias="2020")
-    var_2021: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2020] = Field(default=None, alias="2021")
-    var_2022: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2020] = Field(default=None, alias="2022")
-    var_2023: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2020] = Field(default=None, alias="2023")
-    var_2024: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2020] = Field(default=None, alias="2024")
+    var_2021: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2021] = Field(default=None, alias="2021")
+    var_2022: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2022] = Field(default=None, alias="2022")
+    var_2023: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2023] = Field(default=None, alias="2023")
+    var_2024: Optional[RentcastPropertyRecords200ResponseInnerTaxAssessments2024] = Field(default=None, alias="2024")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["2020", "2021", "2022", "2023", "2024"]
 
@@ -111,10 +115,10 @@ class RentcastPropertyRecords200ResponseInnerTaxAssessments(BaseModel):
 
         _obj = cls.model_validate({
             "2020": RentcastPropertyRecords200ResponseInnerTaxAssessments2020.from_dict(obj["2020"]) if obj.get("2020") is not None else None,
-            "2021": RentcastPropertyRecords200ResponseInnerTaxAssessments2020.from_dict(obj["2021"]) if obj.get("2021") is not None else None,
-            "2022": RentcastPropertyRecords200ResponseInnerTaxAssessments2020.from_dict(obj["2022"]) if obj.get("2022") is not None else None,
-            "2023": RentcastPropertyRecords200ResponseInnerTaxAssessments2020.from_dict(obj["2023"]) if obj.get("2023") is not None else None,
-            "2024": RentcastPropertyRecords200ResponseInnerTaxAssessments2020.from_dict(obj["2024"]) if obj.get("2024") is not None else None
+            "2021": RentcastPropertyRecords200ResponseInnerTaxAssessments2021.from_dict(obj["2021"]) if obj.get("2021") is not None else None,
+            "2022": RentcastPropertyRecords200ResponseInnerTaxAssessments2022.from_dict(obj["2022"]) if obj.get("2022") is not None else None,
+            "2023": RentcastPropertyRecords200ResponseInnerTaxAssessments2023.from_dict(obj["2023"]) if obj.get("2023") is not None else None,
+            "2024": RentcastPropertyRecords200ResponseInnerTaxAssessments2024.from_dict(obj["2024"]) if obj.get("2024") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

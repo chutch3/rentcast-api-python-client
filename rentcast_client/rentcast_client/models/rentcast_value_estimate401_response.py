@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,9 +28,9 @@ class RentcastValueEstimate401Response(BaseModel):
     """
     RentcastValueEstimate401Response
     """ # noqa: E501
-    status: Optional[Union[StrictFloat, StrictInt]] = None
-    error: Optional[StrictStr] = None
-    message: Optional[StrictStr] = None
+    status: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [401]})
+    error: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["auth/api-key-invalid"]})
+    message: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["No API key provided in request. An API key must be provided in the 'X-Api-Key' header"]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["status", "error", "message"]
 

@@ -21,6 +21,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from rentcast_client.models.rentcast_market_statistics200_response_rental_data_history202506 import RentcastMarketStatistics200ResponseRentalDataHistory202506
+from rentcast_client.models.rentcast_market_statistics200_response_rental_data_history202507 import RentcastMarketStatistics200ResponseRentalDataHistory202507
+from rentcast_client.models.rentcast_market_statistics200_response_rental_data_history202508 import RentcastMarketStatistics200ResponseRentalDataHistory202508
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,8 +32,8 @@ class RentcastMarketStatistics200ResponseRentalDataHistory(BaseModel):
     RentcastMarketStatistics200ResponseRentalDataHistory
     """ # noqa: E501
     var_2025_06: Optional[RentcastMarketStatistics200ResponseRentalDataHistory202506] = Field(default=None, alias="2025-06")
-    var_2025_07: Optional[RentcastMarketStatistics200ResponseRentalDataHistory202506] = Field(default=None, alias="2025-07")
-    var_2025_08: Optional[RentcastMarketStatistics200ResponseRentalDataHistory202506] = Field(default=None, alias="2025-08")
+    var_2025_07: Optional[RentcastMarketStatistics200ResponseRentalDataHistory202507] = Field(default=None, alias="2025-07")
+    var_2025_08: Optional[RentcastMarketStatistics200ResponseRentalDataHistory202508] = Field(default=None, alias="2025-08")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["2025-06", "2025-07", "2025-08"]
 
@@ -103,8 +105,8 @@ class RentcastMarketStatistics200ResponseRentalDataHistory(BaseModel):
 
         _obj = cls.model_validate({
             "2025-06": RentcastMarketStatistics200ResponseRentalDataHistory202506.from_dict(obj["2025-06"]) if obj.get("2025-06") is not None else None,
-            "2025-07": RentcastMarketStatistics200ResponseRentalDataHistory202506.from_dict(obj["2025-07"]) if obj.get("2025-07") is not None else None,
-            "2025-08": RentcastMarketStatistics200ResponseRentalDataHistory202506.from_dict(obj["2025-08"]) if obj.get("2025-08") is not None else None
+            "2025-07": RentcastMarketStatistics200ResponseRentalDataHistory202507.from_dict(obj["2025-07"]) if obj.get("2025-07") is not None else None,
+            "2025-08": RentcastMarketStatistics200ResponseRentalDataHistory202508.from_dict(obj["2025-08"]) if obj.get("2025-08") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

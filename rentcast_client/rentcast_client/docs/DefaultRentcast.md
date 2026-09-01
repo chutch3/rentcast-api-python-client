@@ -25,7 +25,7 @@ Returns aggregate market statistics and listing trends for a single US zip code.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -44,18 +44,18 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rentcast_client.DefaultRentcast(api_client)
     zip_code = '29611' # str | A valid 5-digit US zip code (default to '29611')
-    data_type = All # str | The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided (optional) (default to All)
+    data_type = 'All' # str | The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided (optional) (default to 'All')
     history_range = 6 # int | The time range for historical record entries, in months. Defaults to `12` if not provided (optional) (default to 6)
 
     try:
@@ -75,7 +75,7 @@ async with rentcast_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **zip_code** | **str**| A valid 5-digit US zip code | [default to &#39;29611&#39;]
- **data_type** | **str**| The type of aggregate market data to retrieve. Defaults to &#x60;\&quot;All\&quot;&#x60; if not provided | [optional] [default to All]
+ **data_type** | **str**| The type of aggregate market data to retrieve. Defaults to &#x60;\&quot;All\&quot;&#x60; if not provided | [optional] [default to &#39;All&#39;]
  **history_range** | **int**| The time range for historical record entries, in months. Defaults to &#x60;12&#x60; if not provided | [optional] [default to 6]
 
 ### Return type
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -109,7 +109,7 @@ Returns a single property record matching the specified id.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -128,11 +128,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -189,7 +189,7 @@ Search for property records in a geographical area, or by a specific address.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -208,11 +208,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -301,7 +301,7 @@ Returns a list of property records selected at random.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -320,11 +320,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -381,7 +381,7 @@ Returns a property rent estimate and comparable properties.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -400,11 +400,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -413,7 +413,7 @@ async with rentcast_client.ApiClient(configuration) as api_client:
     address = '5500 Grand Lake Dr, San Antonio, TX, 78244' # str | The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters (optional) (default to '5500 Grand Lake Dr, San Antonio, TX, 78244')
     latitude = 3.4 # float | The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter (optional)
     longitude = 3.4 # float | The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter (optional)
-    property_type =  # str | The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types) (optional) (default to )
+    property_type = '' # str | The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types) (optional) (default to '')
     bedrooms =  # float | The number of bedrooms in the property. Use `0` to indicate a studio layout (optional) (default to )
     bathrooms =  # float | The number of bathrooms in the property. Supports fractions to indicate partial bathrooms (optional) (default to )
     square_footage =  # float | The total living area size of the property, in square feet (optional) (default to )
@@ -441,7 +441,7 @@ Name | Type | Description  | Notes
  **address** | **str**| The **full address** of the property, in the format &#x60;Street, City, State, Zip&#x60;. You need to provide either the &#x60;address&#x60; or the &#x60;latitude&#x60;/&#x60;longitude&#x60; parameters | [optional] [default to &#39;5500 Grand Lake Dr, San Antonio, TX, 78244&#39;]
  **latitude** | **float**| The latitude of the property. The &#x60;latitude&#x60;/&#x60;longitude&#x60; can be provided instead of the &#x60;address&#x60; parameter | [optional] 
  **longitude** | **float**| The longitude of the property. The &#x60;latitude&#x60;/&#x60;longitude&#x60; can be provided instead of the &#x60;address&#x60; parameter | [optional] 
- **property_type** | **str**| The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types) | [optional] [default to ]
+ **property_type** | **str**| The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types) | [optional] [default to &#39;&#39;]
  **bedrooms** | **float**| The number of bedrooms in the property. Use &#x60;0&#x60; to indicate a studio layout | [optional] [default to ]
  **bathrooms** | **float**| The number of bathrooms in the property. Supports fractions to indicate partial bathrooms | [optional] [default to ]
  **square_footage** | **float**| The total living area size of the property, in square feet | [optional] [default to ]
@@ -456,7 +456,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -481,7 +481,7 @@ Returns a single rental listing matching the specified id.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -500,11 +500,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -536,7 +536,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -561,7 +561,7 @@ Search for rental listings in a geographical area, or by a specific address.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -580,11 +580,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -603,7 +603,7 @@ async with rentcast_client.ApiClient(configuration) as api_client:
     square_footage = '' # str | The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) (optional) (default to '')
     lot_size = 'lot_size_example' # str | The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) (optional)
     year_built = '' # str | The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) (optional) (default to '')
-    status = Active # str | The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values) (optional) (default to Active)
+    status = 'Active' # str | The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values) (optional) (default to 'Active')
     price = 'price_example' # str | The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) (optional)
     days_old = 'days_old_example' # str | The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) (optional)
     limit = 5 # int | The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination (optional) (default to 5)
@@ -639,7 +639,7 @@ Name | Type | Description  | Notes
  **square_footage** | **str**| The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) | [optional] [default to &#39;&#39;]
  **lot_size** | **str**| The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) | [optional] 
  **year_built** | **str**| The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) | [optional] [default to &#39;&#39;]
- **status** | **str**| The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values) | [optional] [default to Active]
+ **status** | **str**| The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values) | [optional] [default to &#39;Active&#39;]
  **price** | **str**| The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) | [optional] 
  **days_old** | **str**| The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) | [optional] 
  **limit** | **int**| The maximum number of listing records to return, between 1 and 500. Defaults to &#x60;50&#x60; if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination | [optional] [default to 5]
@@ -652,7 +652,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -677,7 +677,7 @@ Returns a single sale listing matching the specified id.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -696,11 +696,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -732,7 +732,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -757,7 +757,7 @@ Search for sale listings in a geographical area, or by a specific address.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -776,11 +776,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -799,7 +799,7 @@ async with rentcast_client.ApiClient(configuration) as api_client:
     square_footage = '' # str | The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) (optional) (default to '')
     lot_size = 'lot_size_example' # str | The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) (optional)
     year_built = '' # str | The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) (optional) (default to '')
-    status = Active # str | The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values) (optional) (default to Active)
+    status = 'Active' # str | The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values) (optional) (default to 'Active')
     price = 'price_example' # str | The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) (optional)
     days_old = 'days_old_example' # str | The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) (optional)
     limit = 5 # int | The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination (optional) (default to 5)
@@ -835,7 +835,7 @@ Name | Type | Description  | Notes
  **square_footage** | **str**| The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) | [optional] [default to &#39;&#39;]
  **lot_size** | **str**| The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) | [optional] 
  **year_built** | **str**| The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) | [optional] [default to &#39;&#39;]
- **status** | **str**| The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values) | [optional] [default to Active]
+ **status** | **str**| The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values) | [optional] [default to &#39;Active&#39;]
  **price** | **str**| The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters) | [optional] 
  **days_old** | **str**| The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) | [optional] 
  **limit** | **int**| The maximum number of listing records to return, between 1 and 500. Defaults to &#x60;50&#x60; if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination | [optional] [default to 5]
@@ -848,7 +848,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -873,7 +873,7 @@ Returns a property value estimate and comparable properties.
 
 ### Example
 
-* Api Key Authentication (sec0):
+* Api Key Authentication (ApiKeyAuth):
 
 ```python
 import rentcast_client
@@ -892,11 +892,11 @@ configuration = rentcast_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: sec0
-configuration.api_key['sec0'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['sec0'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rentcast_client.ApiClient(configuration) as api_client:
@@ -905,7 +905,7 @@ async with rentcast_client.ApiClient(configuration) as api_client:
     address = '5500 Grand Lake Dr, San Antonio, TX, 78244' # str | The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters (optional) (default to '5500 Grand Lake Dr, San Antonio, TX, 78244')
     latitude = 3.4 # float | The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter (optional)
     longitude = 3.4 # float | The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter (optional)
-    property_type =  # str | The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types) (optional) (default to )
+    property_type = '' # str | The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types) (optional) (default to '')
     bedrooms =  # float | The number of bedrooms in the property. Use `0` to indicate a studio layout (optional) (default to )
     bathrooms =  # float | The number of bathrooms in the property. Supports fractions to indicate partial bathrooms (optional) (default to )
     square_footage =  # float | The total living area size of the property, in square feet (optional) (default to )
@@ -933,7 +933,7 @@ Name | Type | Description  | Notes
  **address** | **str**| The **full address** of the property, in the format &#x60;Street, City, State, Zip&#x60;. You need to provide either the &#x60;address&#x60; or the &#x60;latitude&#x60;/&#x60;longitude&#x60; parameters | [optional] [default to &#39;5500 Grand Lake Dr, San Antonio, TX, 78244&#39;]
  **latitude** | **float**| The latitude of the property. The &#x60;latitude&#x60;/&#x60;longitude&#x60; can be provided instead of the &#x60;address&#x60; parameter | [optional] 
  **longitude** | **float**| The longitude of the property. The &#x60;latitude&#x60;/&#x60;longitude&#x60; can be provided instead of the &#x60;address&#x60; parameter | [optional] 
- **property_type** | **str**| The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types) | [optional] [default to ]
+ **property_type** | **str**| The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types) | [optional] [default to &#39;&#39;]
  **bedrooms** | **float**| The number of bedrooms in the property. Use &#x60;0&#x60; to indicate a studio layout | [optional] [default to ]
  **bathrooms** | **float**| The number of bathrooms in the property. Supports fractions to indicate partial bathrooms | [optional] [default to ]
  **square_footage** | **float**| The total living area size of the property, in square feet | [optional] [default to ]
@@ -948,7 +948,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[sec0](../README.md#sec0)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

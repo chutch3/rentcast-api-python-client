@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class RentcastSaleListings200ResponseInnerHoa(BaseModel):
     """
     RentcastSaleListings200ResponseInnerHoa
     """ # noqa: E501
-    fee: Optional[Union[StrictFloat, StrictInt]] = None
+    fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [65]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["fee"]
 
