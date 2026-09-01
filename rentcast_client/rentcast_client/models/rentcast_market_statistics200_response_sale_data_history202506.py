@@ -21,8 +21,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from rentcast_client.models.rentcast_market_statistics200_response_sale_data_data_by_bedrooms_inner import RentcastMarketStatistics200ResponseSaleDataDataByBedroomsInner
-from rentcast_client.models.rentcast_market_statistics200_response_sale_data_data_by_property_type_inner import RentcastMarketStatistics200ResponseSaleDataDataByPropertyTypeInner
+from rentcast_client.models.rentcast_market_statistics200_response_sale_data_history202506_data_by_bedrooms_inner import RentcastMarketStatistics200ResponseSaleDataHistory202506DataByBedroomsInner
+from rentcast_client.models.rentcast_market_statistics200_response_sale_data_history202506_data_by_property_type_inner import RentcastMarketStatistics200ResponseSaleDataHistory202506DataByPropertyTypeInner
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -50,8 +50,8 @@ class RentcastMarketStatistics200ResponseSaleDataHistory202506(BaseModel):
     max_days_on_market: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="maxDaysOnMarket", json_schema_extra={"examples": [348]})
     new_listings: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="newListings", json_schema_extra={"examples": [47]})
     total_listings: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalListings", json_schema_extra={"examples": [263]})
-    data_by_property_type: Optional[List[RentcastMarketStatistics200ResponseSaleDataDataByPropertyTypeInner]] = Field(default=None, alias="dataByPropertyType")
-    data_by_bedrooms: Optional[List[RentcastMarketStatistics200ResponseSaleDataDataByBedroomsInner]] = Field(default=None, alias="dataByBedrooms")
+    data_by_property_type: Optional[List[RentcastMarketStatistics200ResponseSaleDataHistory202506DataByPropertyTypeInner]] = Field(default=None, alias="dataByPropertyType")
+    data_by_bedrooms: Optional[List[RentcastMarketStatistics200ResponseSaleDataHistory202506DataByBedroomsInner]] = Field(default=None, alias="dataByBedrooms")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["date", "averagePrice", "medianPrice", "minPrice", "maxPrice", "averagePricePerSquareFoot", "medianPricePerSquareFoot", "minPricePerSquareFoot", "maxPricePerSquareFoot", "averageSquareFootage", "medianSquareFootage", "minSquareFootage", "maxSquareFootage", "averageDaysOnMarket", "medianDaysOnMarket", "minDaysOnMarket", "maxDaysOnMarket", "newListings", "totalListings", "dataByPropertyType", "dataByBedrooms"]
 
@@ -100,15 +100,13 @@ class RentcastMarketStatistics200ResponseSaleDataHistory202506(BaseModel):
         _items = []
         if self.data_by_property_type:
             for _item_data_by_property_type in self.data_by_property_type:
-                if _item_data_by_property_type:
-                    _items.append(_item_data_by_property_type.to_dict())
+                _items.append(_item_data_by_property_type.to_dict() if _item_data_by_property_type is not None else None)
             _dict['dataByPropertyType'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in data_by_bedrooms (list)
         _items = []
         if self.data_by_bedrooms:
             for _item_data_by_bedrooms in self.data_by_bedrooms:
-                if _item_data_by_bedrooms:
-                    _items.append(_item_data_by_bedrooms.to_dict())
+                _items.append(_item_data_by_bedrooms.to_dict() if _item_data_by_bedrooms is not None else None)
             _dict['dataByBedrooms'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
@@ -146,8 +144,8 @@ class RentcastMarketStatistics200ResponseSaleDataHistory202506(BaseModel):
             "maxDaysOnMarket": obj.get("maxDaysOnMarket") if obj.get("maxDaysOnMarket") is not None else None,
             "newListings": obj.get("newListings") if obj.get("newListings") is not None else None,
             "totalListings": obj.get("totalListings") if obj.get("totalListings") is not None else None,
-            "dataByPropertyType": [RentcastMarketStatistics200ResponseSaleDataDataByPropertyTypeInner.from_dict(_item) for _item in obj["dataByPropertyType"]] if obj.get("dataByPropertyType") is not None else None,
-            "dataByBedrooms": [RentcastMarketStatistics200ResponseSaleDataDataByBedroomsInner.from_dict(_item) for _item in obj["dataByBedrooms"]] if obj.get("dataByBedrooms") is not None else None
+            "dataByPropertyType": [RentcastMarketStatistics200ResponseSaleDataHistory202506DataByPropertyTypeInner.from_dict(_item) for _item in obj["dataByPropertyType"]] if obj.get("dataByPropertyType") is not None else None,
+            "dataByBedrooms": [RentcastMarketStatistics200ResponseSaleDataHistory202506DataByBedroomsInner.from_dict(_item) for _item in obj["dataByBedrooms"]] if obj.get("dataByBedrooms") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

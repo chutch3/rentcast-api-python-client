@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,10 +28,10 @@ class RentcastPropertyRecords200ResponseInnerTaxAssessments2021(BaseModel):
     """
     RentcastPropertyRecords200ResponseInnerTaxAssessments2021
     """ # noqa: E501
-    year: Optional[Union[StrictFloat, StrictInt]] = None
-    value: Optional[Union[StrictFloat, StrictInt]] = None
-    land: Optional[Union[StrictFloat, StrictInt]] = None
-    improvements: Optional[Union[StrictFloat, StrictInt]] = None
+    year: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [2021]})
+    value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [163440]})
+    land: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [45050]})
+    improvements: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, json_schema_extra={"examples": [118390]})
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["year", "value", "land", "improvements"]
 

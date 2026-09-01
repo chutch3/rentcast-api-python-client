@@ -24,8 +24,8 @@ Name | Type | Description | Notes
 **max_days_on_market** | **float** |  | [optional] [default to ]
 **new_listings** | **float** |  | [optional] [default to ]
 **total_listings** | **float** |  | [optional] [default to ]
-**data_by_property_type** | [**List[RentcastMarketStatistics200ResponseSaleDataDataByPropertyTypeInner]**](RentcastMarketStatistics200ResponseSaleDataDataByPropertyTypeInner.md) |  | [optional] 
-**data_by_bedrooms** | [**List[RentcastMarketStatistics200ResponseSaleDataDataByBedroomsInner]**](RentcastMarketStatistics200ResponseSaleDataDataByBedroomsInner.md) |  | [optional] 
+**data_by_property_type** | [**List[RentcastMarketStatistics200ResponseSaleDataHistory202506DataByPropertyTypeInner]**](RentcastMarketStatistics200ResponseSaleDataHistory202506DataByPropertyTypeInner.md) |  | [optional] 
+**data_by_bedrooms** | [**List[RentcastMarketStatistics200ResponseSaleDataHistory202506DataByBedroomsInner]**](RentcastMarketStatistics200ResponseSaleDataHistory202506DataByBedroomsInner.md) |  | [optional] 
 
 ## Example
 

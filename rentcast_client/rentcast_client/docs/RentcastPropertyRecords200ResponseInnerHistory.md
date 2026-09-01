@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_2017_10_19** | [**RentcastPropertyRecords200ResponseInnerHistory20171019**](RentcastPropertyRecords200ResponseInnerHistory20171019.md) |  | [optional] 
-**var_2024_11_18** | [**RentcastPropertyRecords200ResponseInnerHistory20171019**](RentcastPropertyRecords200ResponseInnerHistory20171019.md) |  | [optional] 
+**var_2024_11_18** | [**RentcastPropertyRecords200ResponseInnerHistory20241118**](RentcastPropertyRecords200ResponseInnerHistory20241118.md) |  | [optional] 
 
 ## Example
 
